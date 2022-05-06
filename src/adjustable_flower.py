@@ -24,7 +24,8 @@ def plot(args):
         plt.show()
     else:
         save_path = args.save_image or DEFAULTS['IMG_DIR'] / __file__
-        print(save_path)
+        print(save_path.with_suffix('.png'))
+        print(DEFAULTS['IMG_DIR'])
         # plt.savefig
 
 def main():
