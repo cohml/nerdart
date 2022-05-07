@@ -11,7 +11,7 @@ class Parser:
         )
         self.parser.add_argument(
             '-S', '--save',
-            nargs='*',
+            nargs='?',
             help='Pass to save image, else image will only be displayed via a '
                  'popup window. If passing a filepath, that will be used to '
                  'save the image, otherwise the following path will be used: '
