@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from utils.defaults import DEFAULTS
-from utils.parser import Parser
+from util.parser import Parser
+from util.utils import save_or_show, xy
 
 
 def plot(args):
@@ -11,8 +11,7 @@ def plot(args):
     blap = args.blap
 
     coords = np.linspace(np.pi * bleep, np.pi * bloop, blap)
-    x = np.sin(coords)
-    y = np.cos(coords)
+    x, y = xy(coords)
     colors = plt.cm.prism(np.linspace(0, 1, blap))
 
     ax = plt.subplot()
@@ -20,36 +19,15 @@ def plot(args):
     ax.set_aspect('equal')
     ax.axis('off')
 
-    if args.save_image is None:
-        plt.show()
-    else:
-        save_path = args.save_image or DEFAULTS['IMG_DIR'] / __file__
-        print(save_path.with_suffix('.png'))
-        print(DEFAULTS['IMG_DIR'])
-        # plt.savefig
+    save_or_show(args, __file__)
+
 
 def main():
     parser = Parser()
-    parser.add(
-        '-e', '--bleep',
-        default=-100,
-        type=int,
-        help='...'
-    )
-    parser.add(
-        '-o', '--bloop',
-        default=100,
-        type=int,
-        help='...'
-    )
-    parser.add(
-        '-a', '--blap',
-        default=1000,
-        type=int,
-        help='...'
-    )
+    parser.add('-e', '--bleep', default=-100, type=int)
+    parser.add('-o', '--bloop', default=100, type=int)
+    parser.add('-a', '--blap', default=1000, type=int)
     args = parser.parse()
-
     plot(args)
 
 
