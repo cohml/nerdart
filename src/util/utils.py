@@ -5,22 +5,35 @@ from pathlib import Path
 from util.defaults import DEFAULTS
 
 
-def save_or_show(args, file):
+def save_or_show(file_dunder):
 
-    if args.save is None:
-        plt.show()
+    def decorator(plot_func):
 
-    else:
-        skip = ['save', 'suffix']
-        params = ','.join(f'{k}={v}' for k, v in vars(args).items() if k not in skip)
+        def wrapper(cli_args):
+            plot_func(cli_args)
 
-        if args.save:
-            save_path, = args.save
-        else:
-            save_path = DEFAULTS['IMG_DIR'] / f'{Path(file).stem}_{params}{args.suffix}'
+            # show image in popup window if `--save` not passed; don't save to file
+            if cli_args.save is None:
+                plt.show()
 
-        plt.savefig(save_path, **DEFAULTS['SAVEFIG_KWARGS'])
-        print('written:', save_path)
+            else:
+                skip = {'save', 'suffix'}
+                params = ','.join(f'{k}={v}' for k, v in vars(cli_args).items()
+                                             if k not in skip)
+
+                # set filepath to value passed under `--save`
+                if cli_args.save:
+                    save_path = cli_args.save
+                # set filepath to default value if `--save` passed without argument
+                else:
+                    save_basename =  f'{Path(file_dunder).stem}_{params}{cli_args.suffix}'
+                    save_path = DEFAULTS['IMG_DIR'] / save_basename
+
+                plt.savefig(save_path, **DEFAULTS['SAVEFIG_KWARGS'])
+                print('written:', save_path)
+
+        return wrapper
+    return decorator
 
 
 def xy(arr):
