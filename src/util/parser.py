@@ -12,10 +12,10 @@ class Parser:
         self.parser.add_argument(
             '-S', '--save',
             nargs='*',
-            help='Pass to save image, else image will only be displayed via a '
-                 'popup window. If passing a filepath, that will be used to '
-                 'save the image, otherwise the following path will be used: '
-                 f'{DEFAULTS["IMG_DIR"]}/<script_basename>.png'
+            help='Pass to save image, else image will only be displayed via a popup '
+                 'window. If passing a filepath, that will be used to save the image, '
+                 f'otherwise the following path will be used: {DEFAULTS["IMG_DIR"]}/'
+                 '<script_basename>,<comma,separated,arg,names,and,values>.png'
         )
         self.parser.add_argument(
             '-X', '--suffix',
