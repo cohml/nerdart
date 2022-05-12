@@ -14,6 +14,7 @@ def save_or_show(file_dunder):
 
             # show image in popup window if `--save` not passed; don't save to file
             if cli_args.save is None:
+                plt.tight_layout()
                 plt.show()
 
             else:
