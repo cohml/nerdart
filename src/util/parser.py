@@ -25,7 +25,7 @@ class Parser:
         )
 
     def add(self, *args, **kwargs):
-        kwargs['help'] = kwargs.get('help', ' ') # will show defaults if no help supplied
+        kwargs['help'] = kwargs.get('help', ' ')  # will show defaults if no help supplied
         self.parser.add_argument(*args, **kwargs)
 
     def parse(self):
