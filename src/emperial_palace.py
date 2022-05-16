@@ -1,31 +1,40 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-# params
-n_floors = 7
-circletop = False
+from util.parser import Parser
+from util.utils import save_or_show, xy
 
-ax = plt.subplot()
-ax.axis('off')
 
-linspace = np.linspace(-np.pi, np.pi, 1000)
-x = np.sin(linspace)
-y = np.cos(linspace)
+@save_or_show(__file__)
+def plot(args):
+    n_floors = args.n_floors
+    circletop = args.circletop
 
-floor_x = x + np.random.random() * 10
-floor_x_median = np.median(floor_x) * 10
+    ax = plt.subplot(aspect='equal')
+    ax.axis('off')
 
-floor_y = y + np.random.random()
-floor_y_median = np.median(floor_y)
+    x, y = xy(np.linspace(-np.pi, np.pi, 1000))
 
-if circletop:
-    circletop = 0
-else:
-    circletop = 1
+    floor_x = x + np.random.random() * 10
+    floor_x_median = np.median(floor_x) * 10
 
-for floor in range(circletop, n_floors + circletop):
-    ax.plot([yi - floor if yi > floor_y_median else yi + floor for yi in floor_y],
-            [xi + floor if xi > floor_x_median else xi - floor for xi in floor_x],
-            color='k')
+    floor_y = y + np.random.random()
+    floor_y_median = np.median(floor_y)
 
-plt.show()
+    circletop = int(not circletop)
+
+    for floor in range(circletop, n_floors + circletop):
+        ax.plot([yi - floor if yi > floor_y_median else yi + floor for yi in floor_y],
+                [xi + floor if xi > floor_x_median else xi - floor for xi in floor_x],
+                color='k')
+
+def main():
+    parser = Parser()
+    parser.add('-n', '--n_floors', type=int, default=7)
+    parser.add('-c', '--circletop', action='store_true')
+    args = parser.parse()
+    plot(args)
+
+
+if __name__ == '__main__':
+    main()

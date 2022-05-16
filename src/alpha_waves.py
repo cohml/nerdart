@@ -1,28 +1,46 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import sys
 
-if len(sys.argv) < 2:
-    n_points = int(input('No. of points to plot: '))
-else:
-    n_points = int(sys.argv[1])
+from util.parser import Parser
+from util.utils import save_or_show, xy
 
-for j in range(2, 11):
 
-    rgba = np.random.random(), np.random.random(), np.random.random()
+@save_or_show(__file__)
+def plot(args):
+    num_points = args.num_points
+    sunny = args.sunny
 
-    for i in range(n_points):
-        x = [np.sin(x) for x in np.linspace(0, 10, n_points)]
-        y = [np.cos(y) for y in np.linspace(0, 10, n_points)]
+    coords = np.linspace(0, 10, num_points)
+    x, y = xy(coords)
 
-        x = np.array(x)
-        y = np.array(y)
+    for i in range(2, 11):
+        rgb = np.random.random(3)
 
-        x_colors = [z * i/n_points for z in rgba]
-        y_colors = [1 - z for z in x_colors]
-        alpha = i/n_points
+        for j in range(num_points):
+            x_colors = rgb * (j / num_points)
+            y_colors = 1 - x_colors
+            alpha = j / num_points
 
-        plt.plot(x + i/n_points + j, color=x_colors, alpha=alpha if not j % 2 ==0 else 1 - alpha)
-#        plt.plot(y + i/n_points + j, color=y_colors, alpha=(1 - alpha))
+            if sunny:
+                arr = y + i + (j / num_points)
+                color = y_colors
+                alpha = 1 - alpha
+            else:
+                arr = x + i + (j / num_points)
+                color = x_colors
+                alpha = 1 - alpha if i % 2 == 0 else alpha
 
-plt.show()
+            plt.plot(arr, color=color, alpha=alpha)
+            plt.axis('off')
+
+
+def main():
+    parser = Parser()
+    parser.add('-n', '--num_points', type=int, default=50)
+    parser.add('-s', '--sunny', action='store_true')
+    args = parser.parse()
+    plot(args)
+
+
+if __name__ == '__main__':
+    main()

@@ -1,21 +1,32 @@
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 
-# params
-n = 10
+from util.parser import Parser
+from util.utils import save_or_show, xy
 
-coords = np.linspace(-np.pi, np.pi, 8)
-X = np.sin(coords)
-Y = np.cos(coords)
 
-I = np.linspace(0, np.pi * n, 5000)
-C = plt.cm.rainbow(np.linspace(1, 0, 5000))
+@save_or_show(__file__)
+def plot(args):
+    n_folds = args.n_folds
 
-for i, c in zip(I, C):
-	x = X * np.sin(i) * i + i * 2
-	y = Y * np.cos(i) * i + i * 2
-	plt.plot(x, y, c=c, alpha=0.02)
+    X, Y = xy(np.linspace(-np.pi, np.pi, 8))
+    I = np.linspace(0, np.pi * n_folds, 5000)
+    C = plt.cm.rainbow(np.linspace(1, 0, 5000))
 
-plt.axis('off')
-plt.tight_layout()
-plt.show()
+    for i, c in zip(I, C):
+        x = X * np.sin(i) * i + (2 * i)
+        y = Y * np.cos(i) * i + (2 * i)
+        plt.plot(x, y, c=c, alpha=0.02)
+
+    plt.axis('off')
+
+
+def main():
+    parser = Parser()
+    parser.add('-n', '--n_folds', type=int, default=10)
+    args = parser.parse()
+    plot(args)
+
+
+if __name__ == '__main__':
+    main()

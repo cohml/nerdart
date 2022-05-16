@@ -1,16 +1,29 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-# params
-n_twists = 3
+from util.parser import Parser
+from util.utils import save_or_show
 
-x = np.linspace(-np.pi * n_twists, np.pi * n_twists, 100)
-c = plt.cm.gist_rainbow(np.linspace(0, 1, x.size))
+@save_or_show(__file__)
+def plot(args):
+    n_twists = args.n_twists
 
-for i in np.linspace(0, 10, 100):
-	y = np.sin(x + i) + i
-	plt.scatter(x, y, alpha=0.2, c=c)
+    x = np.linspace(-np.pi * n_twists, np.pi * n_twists, 100)
+    c = plt.cm.gist_rainbow(np.linspace(0, 1, x.size))
 
-plt.tight_layout()
-plt.axis('off')
-plt.show()
+    for i in np.linspace(0, 10, 100):
+    	y = np.sin(x + i) + i
+    	plt.scatter(x, y, alpha=0.2, c=c)
+
+    plt.axis('off')
+
+
+def main():
+    parser = Parser()
+    parser.add('-n', '--n_twists', type=int, default=3)
+    args = parser.parse()
+    plot(args)
+
+
+if __name__ == '__main__':
+    main()

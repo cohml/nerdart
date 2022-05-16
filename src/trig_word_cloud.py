@@ -1,47 +1,87 @@
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 
 from itertools import cycle
 from pathlib import Path
 
-## params
-words_per_line = 50
-lines = 5
-fontsize = 10
-rotate = False
+from util.parser import Parser
+from util.utils import save_or_show
 
-word_file = '/usr/share/dict/words'
-words = list(set(Path(word_file).read_text().lower().splitlines()))
-lens = [1 / len(word) for word in words]
-sum_ = sum(lens)
-probs = np.array([l / sum_ for l in lens])
-rotations = cycle(np.linspace(0, 365, words_per_line))
 
-ax = plt.subplot()
-x = np.linspace(-np.pi, np.pi, words_per_line)
-y = np.sin(x)
-c = plt.cm.rainbow(np.linspace(0, 1, x.size))
+@save_or_show(__file__)
+def plot(args):
+    path_to_word_file = args.path_to_word_file
+    n_words_per_line = args.n_words_per_line
+    n_lines = args.n_lines
+    fontsize = args.fontsize
+    rotate = args.rotate
+    dizziness = args.dizziness
+    unique = args.unique
+    ordered = args.ordered
 
-for i in range(lines):
-    ci = cycle(c)
-    for _ in range(round(i * (x.size / lines))):
-        next(ci)
-    for xj, yj, cj in zip(x, y, ci):
-        word = np.random.choice(words, p=probs)
-        xy = (xj, yj + i)
-        size = fontsize * (1 - abs(yj)) + fontsize
-        r = next(rotations)
-        ax.annotate(word,
-                    xy,
-                    c=cj,
-                    ha='center',
-                    va='center',
-                    weight='ultralight',
-                    fontsize=size,
-                    rotation=r if rotate else 0)
+    words = path_to_word_file.read_text().lower().splitlines()
+    if unique:
+        words = sorted(set(words), key=words.index)
 
-ax.set_xlim(x.min(), x.max())
-ax.set_ylim(-1, i + 1)
-ax.axis('off')
+    inverse_word_lengths = np.array([1 / len(word) for word in words])
+    sampling_probabilities = inverse_word_lengths / inverse_word_lengths.sum()
+    rotations = cycle(np.linspace(-np.pi, np.pi, n_words_per_line) * dizziness)
 
-plt.show()
+    ax = plt.subplot()
+    x = np.linspace(-np.pi, np.pi, n_words_per_line)
+    y = np.sin(x)
+    c = plt.cm.rainbow(np.linspace(0, 1, x.size))
+
+    for i in range(n_lines):
+        ci = cycle(c)
+        for _ in range(round(i * (x.size / n_lines))):
+            next(ci)
+        for j, (xj, yj, cj) in enumerate(zip(x, y, ci), start=1):
+            if ordered:
+                word = words[i * j]
+            else:
+                word = np.random.choice(words, p=sampling_probabilities)
+
+            xy = (xj, yj + i)
+            s = fontsize * (1 - abs(yj)) + fontsize
+            r = next(rotations)
+            ax.annotate(word,
+                        xy,
+                        c=cj,
+                        ha='center',
+                        va='center',
+                        weight='ultralight',
+                        fontsize=s,
+                        rotation=r if rotate else 0)
+
+    ax.set_xlim(x.min(), x.max())
+    ax.set_ylim(-1, i + 1)
+    ax.axis('off')
+
+
+def main():
+    parser = Parser()
+    parser.add('-p', '--path_to_word_file',
+               type=Path,
+               default='/usr/share/dict/words',
+               help='must be a plaintext file with one word per line')
+    parser.add('-w', '--n_words_per_line', type=int, default=50)
+    parser.add('-l', '--n_lines', type=int, default=5)
+    parser.add('-f', '--fontsize', type=int, default=10)
+    parser.add('-r', '--rotate', action='store_true')
+    parser.add('-d', '--dizziness',
+               type=float,
+               default=50.0,
+               help='use with `rotate`')
+    parser.add('-u', '--unique', action='store_true')
+    parser.add('-o', '--ordered',
+               action='store_true',
+               help='show words in order of entry in word file; '
+                    'if not passed, randomly sample words weighted '
+                    'inversely by length')
+    args = parser.parse()
+    plot(args)
+
+
+if __name__ == '__main__':
+    main()

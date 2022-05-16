@@ -1,31 +1,48 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-# params
-n_lines = 10
-offset = 0 # 1
-perspective = False
+from util.parser import Parser
+from util.utils import save_or_show
 
-slopes = np.arange(n_lines)
-x = np.array([0, 1])
-b = offset
 
-fig, ax = plt.subplots()
-for i, m in enumerate(slopes):
+@save_or_show(__file__)
+def plot(args):
+    n_lines = args.n_lines
+    offset = args.offset
+    perspective = args.perspective
 
-    if perspective:
-        x = x + 0.1
+    slopes = np.arange(n_lines)
+    x = np.array([0, 1])
+    b = offset
 
-    line = m*x+b
-    lower_bound = slopes[i-1]*x if i != 0 else line
+    fig, ax = plt.subplots()
+    fig.set_facecolor('k')
+    ax.axis('off')
 
-    rgba = (i/n_lines, 1-i/n_lines, 0.5, 0.5)
+    for i, m in enumerate(slopes):
 
-    if not perspective:
-        ax.plot(line, color=rgba[:-1])
+        if perspective:
+            x = x + 0.1
 
-    ax.fill_between(x, lower_bound, line, color=rgba)
+        line = m*x+b
+        lower_bound = slopes[i-1]*x if i != 0 else line
 
-plt.axis('off')
-fig.set_facecolor('k')
-plt.show()
+        rgba = (i/n_lines, 1-i/n_lines, 0.5, 0.5)
+
+        if not perspective:
+            ax.plot(line, color=rgba[:-1])
+
+        ax.fill_between(x, lower_bound, line, color=rgba)
+
+
+def main():
+    parser = Parser()
+    parser.add('-n', '--n_lines', type=int, default=10)
+    parser.add('-o', '--offset', type=int, default=0)
+    parser.add('-p', '--perspective', action='store_true')
+    args = parser.parse()
+    plot(args)
+
+
+if __name__ == '__main__':
+    main()

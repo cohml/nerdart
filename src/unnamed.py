@@ -1,28 +1,50 @@
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 
-# params
-blurriness = 1 #4
-n_rings = 30
+from argparse import ArgumentTypeError
 
-ax = plt.subplot()
-ax.axis('off')
+from util.parser import Parser
+from util.utils import save_or_show, xy
 
-linspace = np.linspace(-np.pi, np.pi, 1000)
-x = np.sin(linspace)
-y = np.cos(linspace)
 
-for blur in range(blurriness):
-    ring_x = x + np.random.random()
-    ring_x_median = np.median(ring_x)
+@save_or_show(__file__)
+def plot(args):
+    n_rings = args.n_rings
+    shakiness = args.shakiness
 
-    ring_y = y + np.random.random()
-    ring_y_median = np.median(ring_y)
+    if shakiness < 1:
+        raise ArgumentTypeError(
+            '`shakiness` must be greater than or equal to 1; '
+            f'got {shakiness}'
+        )
 
-    for ring in range(1, n_rings + 1):
-        ax.plot([xi + ring if xi > ring_x_median else xi - ring for xi in ring_x],
-                [yi + ring if yi > ring_y_median else yi - ring for yi in ring_y],
-                color='k',
-                lw=(10 / blurriness) * ring / n_rings)
+    ax = plt.subplot()
+    coords = np.linspace(-np.pi, np.pi, 100)
+    x, y = xy(coords)
 
-plt.show()
+    for blur in range(shakiness):
+        ring_x = x + np.random.random()
+        ring_y = y + np.random.random()
+
+        gt_median_x = ring_x > np.median(ring_x)
+        gt_median_y = ring_y > np.median(ring_y)
+
+        for ring in range(1, n_rings + 1):
+            ax.plot(np.where(gt_median_x, ring_x + ring, ring_x - ring),
+                    np.where(gt_median_y, ring_y + ring, ring_y - ring),
+                    lw=(10 / shakiness) * ring / n_rings,
+                    color='k')
+
+    plt.axis('off')
+
+
+def main():
+    parser = Parser()
+    parser.add('-n', '--n_rings', type=int, default=30)
+    parser.add('-s', '--shakiness', type=int, default=1)
+    args = parser.parse()
+    plot(args)
+
+
+if __name__ == '__main__':
+    main()

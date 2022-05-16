@@ -1,20 +1,36 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from random import random, shuffle
 
-n_lines = 50
-max_lw = 5
+from util.parser import Parser
+from util.utils import save_or_show
 
-x = list(range(n_lines))
-y = list(range(n_lines))
 
-shuffle(y)
+@save_or_show(__file__)
+def plot(args):
+    n_lines = args.n_lines
+    max_linewidth = args.max_linewidth
 
-for i in range(n_lines-1):
-    plt.plot([x[i], x[i]],
-             [y[i], y[i+1]],
-             alpha=random(),
-             lw=max_lw*i/n_lines+1)
+    x = list(range(n_lines))
+    y = list(range(n_lines))
 
-plt.axis('off')
-plt.show()
+    np.random.shuffle(y)
+
+    for i in range(n_lines-1):
+        plt.plot([x[i], x[i]],
+                 [y[i], y[i+1]],
+                 alpha=np.random.random(),
+                 lw=max_linewidth*i/n_lines+1)
+
+    plt.axis('off')
+
+
+def main():
+    parser = Parser()
+    parser.add('-n', '--n_lines', type=int, default=50)
+    parser.add('-m', '--max_linewidth', type=int, default=5)
+    args = parser.parse()
+    plot(args)
+
+
+if __name__ == '__main__':
+    main()

@@ -5,6 +5,7 @@ from util.parser import Parser
 from util.utils import save_or_show, xy
 
 
+@save_or_show(__file__)
 def plot(args):
     bleep = args.bleep
     bloop = args.bloop
@@ -19,14 +20,12 @@ def plot(args):
     ax.set_aspect('equal')
     ax.axis('off')
 
-    save_or_show(args, __file__)
-
 
 def main():
     parser = Parser()
-    parser.add('-e', '--bleep', default=-100, type=int)
-    parser.add('-o', '--bloop', default=100, type=int)
-    parser.add('-a', '--blap', default=1000, type=int)
+    parser.add('-e', '--bleep', type=int, default=-100)
+    parser.add('-o', '--bloop', type=int, default=100)
+    parser.add('-a', '--blap', type=int, default=1000)
     args = parser.parse()
     plot(args)
 

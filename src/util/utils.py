@@ -15,7 +15,6 @@ def save_or_show(file_dunder):
             # show image in popup window if `--save` not passed; don't save to file
             if cli_args.save is None:
                 plt.tight_layout()
-                plt.show()
 
             else:
                 skip = {'save', 'suffix'}
@@ -27,11 +26,13 @@ def save_or_show(file_dunder):
                     save_path = cli_args.save
                 # set filepath to default value if `--save` passed without argument
                 else:
-                    save_basename =  f'{Path(file_dunder).stem},{params}{cli_args.suffix}'
+                    save_basename = f'{Path(file_dunder).stem},{params}{cli_args.suffix}'
                     save_path = DEFAULTS['IMG_DIR'] / save_basename
 
                 plt.savefig(save_path, **DEFAULTS['SAVEFIG_KWARGS'])
                 print('written:', save_path)
+
+            plt.show()
 
         return wrapper
     return decorator

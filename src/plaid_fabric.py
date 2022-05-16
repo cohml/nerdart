@@ -1,16 +1,35 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-mod = np.linspace(1, 0, 1000)
-linspace = np.linspace(-np.pi*2, np.pi*2, 1000)
+from util.parser import Parser
+from util.utils import save_or_show
 
-x = [linspace + 0.1*i for i in range(100)]
-y = [np.sin(linspace) for _ in x]
 
-ax = plt.subplot(projection=None)
-ax.axis('off')
+@save_or_show(__file__)
+def plot(args):
+    density = args.density
 
-for i, (xi, yi) in enumerate(zip(x, y)):
-    ax.plot(xi, yi*mod, alpha=1-i/len(x), color='k', lw=np.random.random()*5)
+    mod = np.linspace(1, 0, 1000)
+    lw = 5 * np.random.random(density)
 
-plt.show()
+    linspace = np.linspace(-np.pi * 2, np.pi * 2, 1000)
+    y = np.sin(linspace) * mod
+
+    ax = plt.subplot()
+    ax.axis('off')
+
+    for i in range(density):
+        x = linspace + (0.1 * i)
+        alpha = 1 - i / density
+        ax.plot(x, y, c='k', alpha=alpha, lw=lw[i])
+
+
+def main():
+    parser = Parser()
+    parser.add('-d', '--density', type=int, default=100)
+    args = parser.parse()
+    plot(args)
+
+
+if __name__ == '__main__':
+    main()

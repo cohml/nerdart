@@ -5,7 +5,7 @@ DEFAULTS = {
     'IMG_SUFFIX' : '.png',
     'SAVEFIG_KWARGS' : {
         'bbox_inches' : 'tight',
-        'dpi' : 150,
+        'dpi' : 300,
         'figsize' : (10, 15)
     }
 }

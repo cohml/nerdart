@@ -1,17 +1,28 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-# params
-length = 3
+from util.parser import Parser
+from util.utils import save_or_show, xy
 
-ax = plt.subplot(projection='3d')
 
-x = np.linspace(-np.pi * length, np.pi * length, 1000 * length)
-y = np.sin(x)
-z = np.cos(x)
+@save_or_show(__file__)
+def plot(args):
+    length = args.length
 
-ax.bar(x, y, z, color=plt.cm.gist_rainbow(np.linspace(0, 1, x.size)))
-ax.axis('off')
+    x = np.linspace(-np.pi * length, np.pi * length, 1000 * length)
+    y, z = xy(x)
 
-plt.show()
+    ax = plt.subplot(projection='3d')
+    ax.bar(x, y, z, color=plt.cm.gist_rainbow(np.linspace(0, 1, x.size)))
+    ax.axis('off')
 
+
+def main():
+    parser = Parser()
+    parser.add('-l', '--length', type=int, default=3)
+    args = parser.parse()
+    plot(args)
+
+
+if __name__ == '__main__':
+    main()

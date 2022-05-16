@@ -1,22 +1,38 @@
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 
-# params
-n = 10
-width = 1
+from util.parser import Parser
+from util.utils import save_or_show, xy
 
-coords = np.linspace(-np.pi, np.pi, 50)
-X = np.sin(coords) * width
-Y = np.cos(coords) * width
 
-I = np.linspace(-np.pi * n / 2, np.pi * n / 2, 1000 * n)
-C = plt.cm.gist_rainbow(np.linspace(1, 0, 1000 * n))
+@save_or_show(__file__)
+def plot(args):
+    n = args.n
+    width = args.width
 
-for i, c in zip(I, C):
-	x = X + np.sin(i * 2) + i
-	y = Y + np.sin(i) * i
+    X, Y = xy(np.linspace(-np.pi, np.pi, 50))
+    X *= width
+    Y *= width
 
-	plt.plot(x, y, c=c, alpha=0.5 / n)
+    I = np.linspace(-np.pi * n / 2, np.pi * n / 2, 1000 * n)
+    C = plt.cm.gist_rainbow(np.linspace(1, 0, 1000 * n))
 
-plt.axis('off')
-plt.show()
+    for i, c in zip(I, C):
+    	x = X + np.sin(i * 2) + i
+    	y = Y + np.sin(i) * i
+
+    	plt.plot(x, y, c=c, alpha=0.5 / n)
+
+    plt.axis('off')
+
+
+def main():
+    parser = Parser()
+    parser.add('-n', '--n', type=int, default=10)
+    parser.add('-w', '--width', type=int, default=1)
+    args = parser.parse()
+    plot(args)
+
+
+if __name__ == '__main__':
+    main()
