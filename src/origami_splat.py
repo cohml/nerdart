@@ -1,17 +1,41 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-n_lines = 100
-fade = True
+from util.parser import Parser
+from util.utils import save_or_show
 
-mod = np.linspace(-1, 1, n_lines)
-x = np.array([np.absolute(np.sin(i)) for i in range(n_lines)])
-y = mod * 10
 
-for i in range(n_lines):
-	plt.plot(x*mod[i], y*mod[i],
-					 c=(i/n_lines, 0.2, 1-i/n_lines),
-					 lw=(2-2*np.absolute(mod[i])) if fade else 1)
+@save_or_show(__file__)
+def plot(args):
+    n_lines = args.n_lines
+    fade = args.fade
 
-plt.show()
+    mod = np.linspace(-1, 1, n_lines)
+    if fade:
+        lw = 2 - 2 * abs(mod)
+    else:
+        lw = [1] * n_lines
 
+    x = abs(np.sin(np.arange(n_lines)))
+    y = mod * 10
+
+    for i in range(n_lines):
+        c = (i / n_lines, 1 / 5, 1 - i / n_lines)
+        plt.plot(x * mod[i],
+                 y * mod[i],
+                 lw=lw[i],
+                 c=c)
+
+    plt.axis('off')
+
+
+def main():
+    parser = Parser()
+    parser.add('-n', '--n_lines', type=int, default=100)
+    parser.add('-f', '--fade', action='store_true')
+    args = parser.parse()
+    plot(args)
+
+
+if __name__ == '__main__':
+    main()

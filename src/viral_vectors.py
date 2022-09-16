@@ -1,18 +1,45 @@
-import matplotlib.pyplot as plt
 import numpy as np
-import random
+import matplotlib.pyplot as plt
 
-n_lines = 1000
-n_cols = 50
-x_ticks = np.arange(n_cols)
-for row in x_ticks:
-    plt.scatter(x_ticks, [row]*n_cols, c='k', s=0.5)
+from util.parser import Parser
+from util.utils import save_or_show
 
-x = [random.choice(x_ticks) for i in range(n_lines)]
-y = [random.randint(0, len(x_ticks)-1) for i in range(n_lines)]
 
-#plt.plot(x, y, lw=0.2)
-for i in range(len(x) - 1):
-    plt.plot((x[i], x[i+1]), (y[i], y[i+1]), lw=random.random())
+@save_or_show(__file__)
+def plot(args):
+    n_dims = args.n_dims
+    n_lines = args.n_lines
+    linewidth = args.linewidth
+    dot_size = args.dot_size
 
-plt.show()
+    x = np.arange(n_dims)
+    y = np.zeros(x.size)
+
+    for row in x:
+        plt.scatter(x, y + row, s=dot_size*10)
+
+    for line in range(n_lines):
+        xi = np.random.choice(x, size=2)
+        yi = np.random.choice(x, size=2)
+        plt.plot(xi,
+                 yi,
+                 lw=linewidth,
+                 marker='o',
+                 markersize=dot_size,
+                 markerfacecolor='white')
+
+    plt.axis('off')
+
+
+def main():
+    parser = Parser()
+    parser.add('-d', '--n_dims', type=int, default=20)
+    parser.add('-l', '--n_lines', type=int, default=10)
+    parser.add('-w', '--linewidth', type=float, default=5)
+    parser.add('-s', '--dot_size', type=float, default=5)
+    args = parser.parse()
+    plot(args)
+
+
+if __name__ == '__main__':
+    main()

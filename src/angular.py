@@ -1,20 +1,39 @@
-import numpy as np
 import matplotlib.pyplot as plt
-import random as r
+import numpy as np
 
-title = 'pastels.png'
-slopes = [2, 1, 0, -1, -2]
+from util.parser import Parser
+from util.utils import save_or_show, xy
 
-for slope in slopes:
-	
-	lines_per_obj = 250
-	
-	x = [slope]* lines_per_obj
-	y = np.array([np.sin(i) for i in np.linspace(0, 10, lines_per_obj)])
-	
-	rgb = r.random(), r.random(), r.random()
-	
-	plt.plot((x, y), linewidth=0.8, color=rgb, alpha=1 if slope == 0 else (1.25 - abs(slope/2)))
-	
-plt.show()
-#plt.savefig(title, dpi=600, bbox_inches='tight')
+
+@save_or_show(__file__)
+def plot(args):
+    n_spikes = args.n_spikes
+    density = args.density
+    seed = args.seed
+
+    rnd = np.random.RandomState(seed)
+
+    slopes =  np.linspace(-2, 2, n_spikes)
+    y = np.sin(np.linspace(0, 10, density))
+
+    for slope in slopes:
+        x = np.ones(density) * slope
+        plt.plot((x, y),
+                 lw=0.8,
+                 color=rnd.random(3),
+                 alpha=1 if slope == 0 else abs(slope / 2) / n_spikes)
+
+    plt.axis('off')
+
+
+def main():
+    parser = Parser()
+    parser.add('-n', '--n_spikes', type=int, default=5)
+    parser.add('-d', '--density', type=int, default=250)
+    parser.add('-s', '--seed', type=int, default=5)
+    args = parser.parse()
+    plot(args)
+
+
+if __name__ == '__main__':
+    main()

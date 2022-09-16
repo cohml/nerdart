@@ -1,26 +1,41 @@
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 
-from random import random
+from util.parser import Parser
+from util.utils import save_or_show
 
-title = 'striated_sinewave.png'
-fm = 1 #0.5
-sample_rate = 10 # 1000
-fade = False
 
-for i in np.linspace(0, 1, 1000):
-    x = np.array([np.sin(j * fm) for j in np.linspace(0, 10, sample_rate)])
-    am = i if i < 0.5 else 1 - i
-    rgb = random(), random(), random()
+@save_or_show(__file__)
+def plot(args):
+    freqmod = args.freqmod
+    sample_rate = args.sample_rate
+    fade = args.fade
 
-    if fade:
-        a = i if i < 0.5 else 1 - i
-    else:
-        a = max(0.25, random())
+    coords = np.linspace(0, 10, sample_rate)
 
-    plt.plot(x * am + i, color=rgb, alpha=a)
+    for i in np.linspace(0, 1, 1000):
+        x = np.sin(coords * freqmod)
+        ampmod = i if i < 0.5 else 1 - i
+        rgb = np.random.random(3)
 
-plt.axis('off')
-plt.tight_layout()
-plt.show()
-#plt.savefig(title, dpi=600, bbox_inches='tight')
+        if fade:
+            a = i if i < 0.5 else 1 - i
+        else:
+            a = max(0.25, np.random.random())
+
+        plt.plot(x * ampmod + i, color=rgb, alpha=a)
+
+    plt.axis('off')
+
+
+def main():
+    parser = Parser()
+    parser.add('-p', '--freqmod', type=float, default=1)
+    parser.add('-s', '--sample_rate', type=int, default=100)
+    parser.add('-f', '--fade', action='store_true')
+    args = parser.parse()
+    plot(args)
+
+
+if __name__ == '__main__':
+    main()

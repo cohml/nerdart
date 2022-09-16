@@ -1,20 +1,41 @@
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 
-# params
-dot = False
-n = 15
+from util.parser import Parser
+from util.utils import save_or_show, xy
 
-ax = plt.subplot(polar=False)
-ax.axis('off')
-x = np.linspace(1, 1000, 100)
 
-if dot:
-    plot = ax.scatter
-else:
-    plot = ax.plot
+@save_or_show(__file__)
+def plot(args):
+    density = args.density
+    points = args.points
 
-for i in range(n):
-    plot(np.sin(x) * i, np.cos(x) * i, alpha=i/n, color='k', lw=0.5)
+    coords = np.linspace(1, 1000, 100)
+    x, y = xy(coords)
 
-plt.show()
+    if points:
+        plot = plt.scatter
+    else:
+        plot = plt.plot
+
+    for i in range(density):
+        plot(x * i,
+             y * i,
+             alpha=i/density,
+             color='k',
+             lw=0.5)
+
+    plt.gca().set_aspect('equal')
+    plt.axis('off')
+
+
+def main():
+    parser = Parser()
+    parser.add('-d', '--density', type=int, default=15)
+    parser.add('-p', '--points', action='store_true')
+    args = parser.parse()
+    plot(args)
+
+
+if __name__ == '__main__':
+    main()

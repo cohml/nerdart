@@ -1,16 +1,35 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-# params
-polar = True
-n = 15
+from util.parser import Parser
+from util.utils import save_or_show, xy
 
-ax = plt.subplot(polar=polar)
-ax.axis('off')
 
-x = np.logspace(0, 1000, 100)
+@save_or_show(__file__)
+def plot(args):
+    minimalize = args.minimalize
+    n = args.n
 
-for i in range(n):
-    ax.plot(np.cos(x) * i, np.sin(x)*x * i, color='k', alpha=i/n)
+    ax = plt.subplot(polar=minimalize)
+    ax.axis('off')
 
-plt.show()
+    coords = np.logspace(0, 1000, 100)
+    x, y = xy(coords)
+
+    for i in range(n):
+        ax.plot(y * i,
+                x * i * coords,
+                color='k',
+                alpha=i / n)
+
+
+def main():
+    parser = Parser()
+    parser.add('-n', type=int, default=15)
+    parser.add('-m', '--minimalize', action='store_true')
+    args = parser.parse()
+    plot(args)
+
+
+if __name__ == '__main__':
+    main()

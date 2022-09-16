@@ -1,12 +1,31 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-n = 100
-x = np.linspace(-np.pi, np.pi, 1000)
-ax = plt.subplot()
-ax.axis('off')
+from util.parser import Parser
+from util.utils import save_or_show
 
-ax.bar(x, np.sin(x), alpha=0.25, color=plt.cm.autumn(np.linspace(0,1,n)))
-ax.bar(x, -np.sin(x), alpha=0.25, color=plt.cm.rainbow(np.linspace(0,1,n)))
 
-plt.show()
+@save_or_show(__file__)
+def plot(args):
+    n = args.n
+
+    x = np.linspace(-np.pi, np.pi, 1000)
+    cm_linspace = np.linspace(0, 1, n)
+    sin = np.sin(x)
+
+    ax = plt.subplot()
+    ax.axis('off')
+
+    ax.bar(x, sin, color=plt.cm.autumn(cm_linspace), alpha=0.25)
+    ax.bar(x, -sin, color=plt.cm.rainbow(cm_linspace), alpha=0.25)
+
+
+def main():
+    parser = Parser()
+    parser.add('-n', type=int, default=100)
+    args = parser.parse()
+    plot(args)
+
+
+if __name__ == '__main__':
+    main()
