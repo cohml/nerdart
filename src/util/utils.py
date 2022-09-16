@@ -2,6 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from pathlib import Path
+from time import perf_counter
+
 from util.defaults import DEFAULTS
 
 
@@ -10,7 +12,15 @@ def save_or_show(file_dunder):
     def decorator(plot_func):
 
         def wrapper(cli_args):
+            start = perf_counter()
             plot_func(cli_args)
+            end = perf_counter()
+
+            # compute and display duration to generate plot
+            duration = end - start
+            minutes = int(np.round(duration // 60, 0))
+            seconds = int(np.round(duration % 60, 0))
+            print(f'* plot generated in {minutes}m {seconds}s')
 
             # show image in popup window if `--save` not passed; don't save to file
             if cli_args.save is None:
@@ -30,7 +40,7 @@ def save_or_show(file_dunder):
                     save_path = DEFAULTS['IMG_DIR'] / save_basename
 
                 plt.savefig(save_path, **DEFAULTS['SAVEFIG_KWARGS'])
-                print('written:', save_path)
+                print('* written:', save_path)
 
             plt.show()
 
