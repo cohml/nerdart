@@ -7,7 +7,9 @@ from util.utils import save_or_show
 
 COLORS = {
     'rainbow': plt.cm.rainbow,
-    'gist_rainbow': plt.cm.gist_rainbow
+    'gist_rainbow': plt.cm.gist_rainbow,
+    'plasma': plt.cm.plasma,
+    'viridis': plt.cm.viridis
 }
 
 
