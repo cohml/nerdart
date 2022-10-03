@@ -1,15 +1,25 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+from os import get_terminal_size
 from pathlib import Path
 from time import perf_counter
 
-from util.defaults import DEFAULTS
+from util.defaults import DEFAULTS, LOGO
+
+
+def print_logo():
+    terminal_width = get_terminal_size().columns
+    logo_length = max(map(len, LOGO.splitlines()))
+
+    if terminal_width >= logo_length:
+        print(LOGO)
 
 
 def save_or_show(file_dunder):
 
     def decorator(plot_func):
+        print_logo()
 
         def wrapper(cli_args):
             start = perf_counter()
