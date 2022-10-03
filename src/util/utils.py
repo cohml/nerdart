@@ -49,6 +49,7 @@ def save_or_show(file_dunder):
                     save_basename = f'{Path(file_dunder).stem},{params}{cli_args.suffix}'
                     save_path = DEFAULTS['IMG_DIR'] / save_basename
 
+                plt.gcf().set_size_inches(DEFAULTS['FIGSIZE'])
                 plt.savefig(save_path, **DEFAULTS['SAVEFIG_KWARGS'])
                 print('* written:', save_path)
 
