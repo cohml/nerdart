@@ -46,6 +46,7 @@ def save_or_show(file_dunder):
                     save_path = cli_args.save
                 # set filepath to default value if `--save` passed without argument
                 else:
+                    DEFAULTS['IMG_DIR'].mkdir(exist_ok=True, parents=True)
                     save_basename = f'{Path(file_dunder).stem},{params}{cli_args.suffix}'
                     save_path = DEFAULTS['IMG_DIR'] / save_basename
 
