@@ -23,6 +23,13 @@ class Parser:
             help='Filetype extension to use when saving images (default: '
                  '%(default)s)'
         )
+        self.parser.add_argument(
+            '-Q', '--quiet',
+            action='store_true',
+            help='Generate plot without showing interactive plotting popup window. '
+                 'This only makes sense when `--save` is also passed. (default: '
+                 '%(default)s).'
+        )
 
     def add(self, *args, **kwargs):
         kwargs['help'] = kwargs.get('help', ' ')  # will show defaults if no help supplied

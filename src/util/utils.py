@@ -53,7 +53,8 @@ def save_or_show(file_dunder):
                 plt.savefig(save_path, **DEFAULTS['SAVEFIG_KWARGS'])
                 print('* written:', save_path)
 
-            plt.show()
+            if not cli_args.quiet:
+                plt.show()
 
         return wrapper
     return decorator
