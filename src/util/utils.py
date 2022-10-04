@@ -10,7 +10,7 @@ from util.defaults import DEFAULTS, LOGO
 
 def print_logo():
     terminal_width = get_terminal_size().columns
-    logo_length = max(map(len, LOGO.splitlines()))
+    logo_length = 99
 
     if terminal_width >= logo_length:
         print(LOGO)
