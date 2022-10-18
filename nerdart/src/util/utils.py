@@ -5,15 +5,26 @@ from os import get_terminal_size
 from pathlib import Path
 from time import perf_counter
 
-from util.defaults import DEFAULTS, LOGO
+from nerdart.src.util.defaults import DEFAULTS, LOGO
+
+
+def get_script_paths():
+    src_dir = Path(__file__).resolve().parent.parent
+    script_paths = src_dir.glob('*.py')
+    full_paths = [p.resolve() for p in script_paths if p.name != '__init__.py']
+    return full_paths
 
 
 def print_logo():
     terminal_width = get_terminal_size().columns
     logo_length = 99
+    printed = False
 
     if terminal_width >= logo_length:
         print(LOGO)
+        printed = True
+
+    return printed
 
 
 def save_or_show(file_dunder):

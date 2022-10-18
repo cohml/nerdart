@@ -1,0 +1,7 @@
+name: nerdart
+dependencies:
+  - ipdb
+  - ipython
+  - matplotlib
+  - numpy
+  - scipy

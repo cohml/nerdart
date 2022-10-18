@@ -3,7 +3,7 @@ from pathlib import Path
 
 DEFAULTS = {
     'FIGSIZE' : (15, 10),
-    'IMG_DIR' : Path(__file__).resolve().parent.parent.parent / 'img' / 'custom',
+    'IMG_DIR' : Path(__file__).resolve().parents[2] / 'img' / 'custom',
     'IMG_SUFFIX' : '.png',
     'SAVEFIG_KWARGS' : {
         'bbox_inches' : 'tight',
