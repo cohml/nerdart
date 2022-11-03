@@ -1,7 +1,7 @@
 import subprocess
 import sys
 
-from nerdart.util.logo import Logo
+from nerdart.util.logo.logo import Logo
 from nerdart.util.utils import get_artwork_paths
 
 

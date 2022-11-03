@@ -1,12 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from shutil import get_terminal_size
 from pathlib import Path
 from time import perf_counter
 
 from nerdart.util.defaults import DEFAULTS
-from nerdart.util.logo import Logo
+from nerdart.util.logo.logo import Logo
 
 
 def get_artwork_paths():
@@ -21,7 +20,7 @@ def get_artwork_paths():
 def save_or_show(file_dunder):
 
     def decorator(artwork_func):
-        Logo.display()
+        Logo().display()
 
         def wrapper(cli_args):
             start = perf_counter()
