@@ -18,10 +18,11 @@ def main():
     artwork_names = [ap.stem for ap in artwork_paths]
 
     if subcommand == 'ls':
-        print(
-            'The following subcommands are currently available:',
-            ['logo', 'ls'] + sorted(artwork_names)
+        available_subcommands = ['logo', 'ls'] + sorted(artwork_names)
+        available_subcommands_msg = (
+            '\033[1mThe following subcommands are currently available:\033[0m'
         )
+        print(available_subcommands_msg, available_subcommands, sep='\n')
 
     elif subcommand == 'logo':
         displayed = Logo.display()
