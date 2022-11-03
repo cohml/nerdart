@@ -25,7 +25,7 @@ def main():
         print(available_subcommands_msg, available_subcommands, sep='\n')
 
     elif subcommand == 'logo':
-        displayed = Logo.display()
+        displayed = Logo().display()
         if not displayed:
             print('To see the `nerdart` logo, increase your terminal width.')
 

@@ -1,59 +1,67 @@
 from os import get_terminal_size
 
 
-_RESET = '\033[0m'
-_BLINK = '\033[1;5m{}' + _RESET
-_RED = '\033[1;31m' + '{}' + _RESET
-_GREEN = '\033[1;32m' + '{}' + _RESET
-_YELLOW = '\033[1;33m' + '{}' + _RESET
-_BLUE = '\033[1;34m' + '{}' + _RESET
-_PINK = '\033[1;35m' + '{}' + _RESET
-_CYAN = '\033[1;36m' + '{}' + _RESET
-_WHITE = '\033[1;37m' + '{}' + _RESET
-_BOXES = r""" _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _
-/\_\ /\_\ /\_\ /\_\ /\_\ /\_\ /\_\ /\_\ /\_\ /\_\ /\_\ /\_\ /\_\ /\_\ /\_\ /\_\ /\_\ /\_\ /\_\ /\_\
-\/_/ \/_/ \/_/ \/_/ \/_/ \/_/ \/_/ \/_/ \/_/ \/_/ \/_/ \/_/ \/_/ \/_/ \/_/ \/_/ \/_/ \/_/ \/_/ \/_/"""
-_N = '         _\n        /\\ \\     _\n       /  \\ \\   /\\_\\\n      / /\\ \\ \\_/ / /\n     / / /\\ \\___/ /\n    / / /  \\/____/\n   / / /    / / /\n  / / /    / / /\n / / /    / / /\n/ / /    / / /\n\\/_/     \\/_/'
-_E = '             _      \n    /\\ \\ \n /  \\ \\\n/ /\\ \\ \\\n/ / /\\ \\_\\\n/ /_/_ \\/_/\n/ /____/\\ \n/ /\\____\\/ \n/ / /______ \n/ / /_______\\\n \\/__________/'
-_R = '      _   \n        /\\ \\ \n       /  \\ \\\n     / /\\ \\ \\ \n   / / /\\ \\_\\\n  / / /_/ / /\n   / / /__\\/ /\n  / / /_____/\n / / /\\ \\ \\  \n/ / /  \\ \\ \\ \n\\/_/    \\_\\/'
-_D = '       _        \n      /\\ \\      \n     /  \\ \\____ \n  / /\\ \\_____\\\n / / /\\/___  /\n/ / /   / / /\n/ / /   / / /\n/ / /   / / /\n\\ \\ \\__/ / /\n \\ \\___\\/ /\n   \\/_____/'
-_A = '    _             \n   / /\\        \n  / /  \\       \n / / /\\ \\       \n/ / /\\ \\ \\       \n/ / /  \\ \\ \\      \n/ / /___/ /\\ \\   \n/ / /_____/ /\\ \\  \n/ /_________/\\ \\ \\ \n/ / /_       __\\ \\_\\\n \\_\\___\\     /____/_/'
-_T = '       _       \n      /\\ \\     \n      \\_\\ \\    \n    /\\__ \\   \n   / /_ \\ \\  \n  / / /\\ \\ \\ \n  / / /  \\/_/ \n  / / /        \n / / /         \n/_/ /          \n \\_\\/'
+FORMAT = '\033[1;{color}m{text}\033[0m'
+
+RED = 31
+GREEN = 32
+YELLOW = 33
+BLUE = 34
+PINK = 35
+CYAN = 36
+WHITE = 37
+WHITE_BLINK = 5
+
+N_TXT = '         _\n        /\\ \\     _\n       /  \\ \\   /\\_\\\n      / /\\ \\ \\_/ / /\n     / / /\\ \\___/ /\n    / / /  \\/____/\n   / / /    / / /\n  / / /    / / /\n / / /    / / /\n/ / /    / / /\n\\/_/     \\/_/'
+E_TXT = '             _      \n    /\\ \\ \n /  \\ \\\n/ /\\ \\ \\\n/ / /\\ \\_\\\n/ /_/_ \\/_/\n/ /____/\\ \n/ /\\____\\/ \n/ / /______ \n/ / /_______\\\n \\/__________/'
+R_TXT = '      _   \n        /\\ \\ \n       /  \\ \\\n     / /\\ \\ \\ \n   / / /\\ \\_\\\n  / / /_/ / /\n   / / /__\\/ /\n  / / /_____/\n / / /\\ \\ \\  \n/ / /  \\ \\ \\ \n\\/_/    \\_\\/'
+D_TXT = '       _        \n      /\\ \\      \n     /  \\ \\____ \n  / /\\ \\_____\\\n / / /\\/___  /\n/ / /   / / /\n/ / /   / / /\n/ / /   / / /\n\\ \\ \\__/ / /\n \\ \\___\\/ /\n   \\/_____/'
+A_TXT = '    _             \n   / /\\        \n  / /  \\       \n / / /\\ \\       \n/ / /\\ \\ \\       \n/ / /  \\ \\ \\      \n/ / /___/ /\\ \\   \n/ / /_____/ /\\ \\  \n/ /_________/\\ \\ \\ \n/ / /_       __\\ \\_\\\n \\_\\___\\     /____/_/'
+T_TXT = '       _       \n      /\\ \\     \n      \\_\\ \\    \n    /\\__ \\   \n   / /_ \\ \\  \n  / / /\\ \\ \\ \n  / / /  \\/_/ \n  / / /        \n / / /         \n/_/ /          \n \\_\\/'
+BOXES_TXT = (' _   ' * 19) + ' _\n' + ('/\\_\\ ' * 19) + '/\\_\\\n' + ('\\/_/ ' * 19) + '\\/_/\n'
+
+N_FMT = {'text' : N_TXT.splitlines(), 'color' : RED}
+E_FMT = {'text' : E_TXT.splitlines(), 'color' : GREEN}
+R_FMT1 = {'text' : R_TXT.splitlines(), 'color' : YELLOW}
+D_FMT = {'text' : D_TXT.splitlines(), 'color' : BLUE}
+A_FMT = {'text' : A_TXT.splitlines(), 'color' : PINK}
+R_FMT2 = {'text' : R_TXT.splitlines(), 'color' : CYAN}
+T_FMT = {'text' : T_TXT.splitlines(), 'color' : WHITE}
+BOXES_FMT = {'text' : BOXES_TXT, 'color' : WHITE_BLINK}
 
 
 class Logo:
 
-    _letters = [_N, _E, _R, _D, _A, _T]
-    _nerdart = '\n'.join(
-        [
-            _RED.format(n) +
-            _GREEN.format(e) +
-            _YELLOW.format(r) +
-            _BLUE.format(d) +
-            _PINK.format(a) +
-            _CYAN.format(r) +
-            _WHITE.format(t)
-            for n, e, r, d, a, t in zip(*map(str.splitlines, _letters))
-        ]
-    )
-    _logo = '\n'.join(
-        [
-            _BLINK.format(_BOXES),
-            _nerdart,
-            _BLINK.format(_BOXES),
-            ''
-        ]
-    )
+    def __init__(self):
+        boxes_blinking = FORMAT.format(**BOXES_FMT)
 
+        nerdart_colored = ''
+        for line in range(len(N_FMT['text'])):
+            for letter in (N_FMT, E_FMT, R_FMT1, D_FMT, A_FMT, R_FMT2, T_FMT):
+                nerdart_colored += FORMAT.format(
+                    color=letter['color'],
+                    text=letter['text'][line]
+                )
+            nerdart_colored += '\n'
+        nerdart_colored += '\n'
 
-    @classmethod
-    def display(cls):
+        self.__logo = (
+            boxes_blinking +
+            nerdart_colored +
+            boxes_blinking
+        )
+
+    @property
+    def logo(self):
+        return self.__logo
+
+    def display(self):
         terminal_width = get_terminal_size().columns
         logo_length = 99
         displayed = False
 
         if terminal_width >= logo_length:
-            print(cls._logo)
             displayed = True
+            print(self.logo)
 
         return displayed
