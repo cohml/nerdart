@@ -1,4 +1,5 @@
 from os import get_terminal_size
+from random import shuffle
 
 
 FORMAT = '\033[1;{color}m{text}\033[0m'
@@ -11,6 +12,8 @@ PINK = 35
 CYAN = 36
 WHITE = 37
 WHITE_BLINK = 5
+COLORS = [RED, GREEN, YELLOW, BLUE, PINK, CYAN, WHITE]
+shuffle(COLORS)
 
 N_TXT = '         _\n        /\\ \\     _\n       /  \\ \\   /\\_\\\n      / /\\ \\ \\_/ / /\n     / / /\\ \\___/ /\n    / / /  \\/____/\n   / / /    / / /\n  / / /    / / /\n / / /    / / /\n/ / /    / / /\n\\/_/     \\/_/'
 E_TXT = '             _      \n    /\\ \\ \n /  \\ \\\n/ /\\ \\ \\\n/ / /\\ \\_\\\n/ /_/_ \\/_/\n/ /____/\\ \n/ /\\____\\/ \n/ / /______ \n/ / /_______\\\n \\/__________/'
@@ -20,13 +23,13 @@ A_TXT = '    _             \n   / /\\        \n  / /  \\       \n / / /\\ \\    
 T_TXT = '       _       \n      /\\ \\     \n      \\_\\ \\    \n    /\\__ \\   \n   / /_ \\ \\  \n  / / /\\ \\ \\ \n  / / /  \\/_/ \n  / / /        \n / / /         \n/_/ /          \n \\_\\/'
 BOXES_TXT = (' _   ' * 19) + ' _\n' + ('/\\_\\ ' * 19) + '/\\_\\\n' + ('\\/_/ ' * 19) + '\\/_/\n'
 
-N_FMT = {'text' : N_TXT.splitlines(), 'color' : RED}
-E_FMT = {'text' : E_TXT.splitlines(), 'color' : GREEN}
-R_FMT1 = {'text' : R_TXT.splitlines(), 'color' : YELLOW}
-D_FMT = {'text' : D_TXT.splitlines(), 'color' : BLUE}
-A_FMT = {'text' : A_TXT.splitlines(), 'color' : PINK}
-R_FMT2 = {'text' : R_TXT.splitlines(), 'color' : CYAN}
-T_FMT = {'text' : T_TXT.splitlines(), 'color' : WHITE}
+N_FMT = {'text' : N_TXT.splitlines(), 'color' : COLORS[0]}
+E_FMT = {'text' : E_TXT.splitlines(), 'color' : COLORS[1]}
+R_FMT1 = {'text' : R_TXT.splitlines(), 'color' : COLORS[2]}
+D_FMT = {'text' : D_TXT.splitlines(), 'color' : COLORS[3]}
+A_FMT = {'text' : A_TXT.splitlines(), 'color' : COLORS[4]}
+R_FMT2 = {'text' : R_TXT.splitlines(), 'color' : COLORS[5]}
+T_FMT = {'text' : T_TXT.splitlines(), 'color' : COLORS[6]}
 BOXES_FMT = {'text' : BOXES_TXT, 'color' : WHITE_BLINK}
 
 
