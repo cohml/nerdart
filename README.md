@@ -28,7 +28,8 @@
 
 ## Setup
 
-This project requires a conda environment. To set it up:
+This project requires a conda environment. To set it up, run the following
+command from your `base` environment:
 
     sh mkenv.sh
 

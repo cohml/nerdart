@@ -1,4 +1,6 @@
 name: nerdart
+channels:
+  - conda-forge
 dependencies:
   - ipdb
   - ipython
