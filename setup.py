@@ -1,8 +1,11 @@
+import nerdart
+
 from setuptools import find_packages, setup
+
 
 setup(
     name='nerdart',
-    version='1.0.0',
+    version=nerdart.__version__,
     description='Nerdy art made with math and code.',
     url='https://github.com/cohml/nerdart',
     packages=find_packages(exclude=['tests']),
