@@ -1,5 +1,6 @@
 import argparse
-from .defaults import DEFAULTS
+
+from nerdart import DEFAULTS
 
 
 class Parser:

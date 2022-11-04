@@ -1,11 +1,11 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 from itertools import cycle
 from pathlib import Path
 
-from nerdart.util.parser import Parser
-from nerdart.util.utils import save_or_show
+from nerdart import Parser
+from nerdart.utils import save_or_show
 
 
 @save_or_show(__file__)

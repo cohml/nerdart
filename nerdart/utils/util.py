@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 from time import perf_counter
 
-from nerdart.util.defaults import DEFAULTS
-from nerdart.util.logo.logo import Logo
+from nerdart.utils.defaults import DEFAULTS
+from nerdart.utils.logo.logo import Logo
 
 
 def get_artwork_paths():

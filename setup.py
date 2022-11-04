@@ -13,7 +13,7 @@ setup(
     zip_safe=False,
     entry_points={
         'console_scripts' : [
-            'nerdart = nerdart.util.run:main'
+            'nerdart = nerdart.utils.run:main'
         ]
     }
 )

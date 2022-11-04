@@ -1,8 +1,8 @@
 from shutil import get_terminal_size
 
-from nerdart.util.defaults import DEFAULTS
-from nerdart.util.logo.boxes import BOXES
-from nerdart.util.logo.letters import LETTERS
+from nerdart.utils.defaults import DEFAULTS
+from nerdart.utils.logo.boxes import BOXES
+from nerdart.utils.logo.letters import LETTERS
 
 
 FORMAT = DEFAULTS['LOGO_FORMAT']

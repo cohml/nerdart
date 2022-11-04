@@ -1,10 +1,10 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 from argparse import ArgumentTypeError
 
-from nerdart.util.parser import Parser
-from nerdart.util.utils import save_or_show, xy
+from nerdart import Parser
+from nerdart.utils import save_or_show, xy
 
 
 @save_or_show(__file__)
