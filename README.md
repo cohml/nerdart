@@ -34,7 +34,6 @@ command from your `base` environment:
     sh mkenv.sh
 
 
-
 ## Use
 
 First, activate your environment:
@@ -65,6 +64,14 @@ To generate the artwork:
 
 Note that all options are optional. If none are passed, the selected artwork
 will be generated with all default values.
+
+To create a new artwork `foo`, start by initializing it from a template:
+
+    nerdart template foo
+
+This will write a `foo.py` file inside `nerdart/art` with the basic structure
+already filled out, ensuring compatibility with the rest of the `nerdart`
+package.
 
 
 # Have fun!

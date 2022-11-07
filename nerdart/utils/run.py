@@ -1,7 +1,7 @@
 import subprocess
 import sys
 
-from nerdart import Logo
+from nerdart import Logo, Template
 from nerdart.utils import get_artwork_paths
 
 
@@ -18,7 +18,8 @@ def main():
     artwork_names = [ap.stem for ap in artwork_paths]
 
     if subcommand == 'ls':
-        available_subcommands = ['logo', 'ls'] + sorted(artwork_names)
+        available_subcommands = ['logo', 'ls', 'template']
+        available_subcommands += sorted(artwork_names)
         available_subcommands_msg = (
             '\033[1mThe following subcommands are currently available:\033[0m'
         )
@@ -28,6 +29,15 @@ def main():
         displayed = Logo().display()
         if not displayed:
             print('To see the `nerdart` logo, increase your terminal width.')
+
+    elif subcommand == 'template':
+        if len(options) == 0:
+            raise ValueError(
+                'To initialize a new artwork from a template, supply a name as '
+                '`nerdart template <foo>`. This will create the file `foo.py`.'
+            )
+        name = options[0]
+        Template(name).generate()
 
     elif subcommand not in artwork_names:
         raise ValueError(
