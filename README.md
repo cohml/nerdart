@@ -48,28 +48,26 @@ To see all available artworks:
 
     nerdart ls
 
-Once an artwork is selected, see which options are available for it customizing it:
+Once an artwork is selected, see which options are available for customization:
 
-    nerdart <artwork> --help
+    nerdart <artwork> --help/-h
 
-Equivalently:
-
-    nerdart <artwork> -h
-
-To generate the artwork:
+To generate the selected artwork:
 
     nerdart <artwork> [options]
 
-Note that all options are optional. If none are passed, the selected artwork
+**Note:** All options are optional. If none are passed, the selected artwork
 will be generated with all default values.
 
-To create a new artwork `foo`, start by initializing it from a template:
+To create a new artwork `foo` from a template:
 
     nerdart template foo
 
-This will write a `foo.py` file inside `nerdart/art` with the basic structure
-already filled out, ensuring compatibility with the rest of the `nerdart`
-package.
+This will create a `foo.py` file inside `nerdart/art` with the basic structure
+already in place, ensuring compatibility with the `nerdart` package. Once your
+artwork is complete, to run it:
+
+    nerdart foo
 
 
 # Have fun!
