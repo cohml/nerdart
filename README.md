@@ -23,8 +23,6 @@
 \/_/ \/_/ \/_/ \/_/ \/_/ \/_/ \/_/ \/_/ \/_/ \/_/ \/_/ \/_/ \/_/ \/_/ \/_/ \/_/ \/_/ \/_/ \/_/ \/_/
 ```
 
-![alt text](https://github.com/cohml/nerdart/blob/main/img/default/willy_wonka,quiet=True,n_periods=3,density=1000,resolution=200,color=rainbow,fade=False.png)
-
 
 ## Setup
 
