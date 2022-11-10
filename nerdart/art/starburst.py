@@ -19,23 +19,19 @@ def plot(args):
         plot = plt.plot
 
     for i in range(density):
-        plot(x * i,
-             y * i,
-             alpha=i/density,
-             color='k',
-             lw=0.5)
+        plot(x * i, y * i, alpha=i / density, color="k", lw=0.5)
 
-    plt.gca().set_aspect('equal')
-    plt.axis('off')
+    plt.gca().set_aspect("equal")
+    plt.axis("off")
 
 
 def main():
     parser = Parser()
-    parser.add('-d', '--density', type=int, default=15)
-    parser.add('-p', '--points', action='store_true')
+    parser.add("-d", "--density", type=int, default=15)
+    parser.add("-p", "--points", action="store_true")
     args = parser.parse()
     plot(args)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

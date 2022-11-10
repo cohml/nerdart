@@ -24,25 +24,25 @@ def plot(args):
         plt.plot(
             x * spiralizer + three_d_offset,
             y * spiralizer + three_d_offset,
-            lw=line_width
+            lw=line_width,
         )
 
-    plt.gca().set_aspect('equal')
+    plt.gca().set_aspect("equal")
     plt.xlim(lims)
     plt.ylim(lims)
-    plt.axis('off')
+    plt.axis("off")
 
 
 def main():
     parser = Parser()
-    parser.add('-e', '--n_elbows', type=int, default=1000)
-    parser.add('-c', '--n_cycles', type=int, default=100)
-    parser.add('-s', '--spacing', type=int, default=5)
-    parser.add('-w', '--line_width', type=float, default=1.0)
-    parser.add('-d', '--three_d_amount', type=float, default=0)
+    parser.add("-e", "--n_elbows", type=int, default=1000)
+    parser.add("-c", "--n_cycles", type=int, default=100)
+    parser.add("-s", "--spacing", type=int, default=5)
+    parser.add("-w", "--line_width", type=float, default=1.0)
+    parser.add("-d", "--three_d_amount", type=float, default=0)
     args = parser.parse()
     plot(args)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

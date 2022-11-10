@@ -1,5 +1,5 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 from nerdart import Parser
 from nerdart.utils import save_or_show, xy
@@ -23,16 +23,16 @@ def plot(args):
 
         plt.plot(x, y, c=c, alpha=0.5 / n)
 
-    plt.axis('off')
+    plt.axis("off")
 
 
 def main():
     parser = Parser()
-    parser.add('-n', '--n', type=int, default=10)
-    parser.add('-w', '--width', type=int, default=1)
+    parser.add("-n", "--n", type=int, default=10)
+    parser.add("-w", "--width", type=int, default=1)
     args = parser.parse()
     plot(args)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

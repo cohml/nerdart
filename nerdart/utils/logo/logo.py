@@ -4,34 +4,27 @@ from nerdart.utils.defaults import DEFAULTS
 from nerdart.utils.logo.boxes import BOXES
 from nerdart.utils.logo.letters import LETTERS
 
-
-FORMAT = DEFAULTS['LOGO_FORMAT']
+FORMAT = DEFAULTS["LOGO_FORMAT"]
 
 
 class Logo:
-
     def __init__(self):
-        boxes_lines = BOXES['text'].splitlines()
+        boxes_lines = BOXES["text"].splitlines()
         self.max_length = len(boxes_lines[-1])
-        self.n_letter_lines = len(LETTERS[-1]['text'])
+        self.n_letter_lines = len(LETTERS[-1]["text"])
 
         blinking_boxes = FORMAT.format(**BOXES)
 
-        colored_letters = ''
+        colored_letters = ""
         for line in range(self.n_letter_lines):
             for letter in LETTERS:
                 colored_letters += FORMAT.format(
-                    text=letter['text'][line],
-                    color=letter['color']
+                    text=letter["text"][line], color=letter["color"]
                 )
-            colored_letters += '\n'
-        colored_letters += '\n'
+            colored_letters += "\n"
+        colored_letters += "\n"
 
-        self.__logo = (
-            blinking_boxes +
-            colored_letters +
-            blinking_boxes
-        )
+        self.__logo = blinking_boxes + colored_letters + blinking_boxes
 
     @property
     def logo(self):

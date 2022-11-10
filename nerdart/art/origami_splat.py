@@ -21,21 +21,18 @@ def plot(args):
 
     for i in range(n_lines):
         c = (i / n_lines, 1 / 5, 1 - i / n_lines)
-        plt.plot(x * mod[i],
-                 y * mod[i],
-                 lw=lw[i],
-                 c=c)
+        plt.plot(x * mod[i], y * mod[i], lw=lw[i], c=c)
 
-    plt.axis('off')
+    plt.axis("off")
 
 
 def main():
     parser = Parser()
-    parser.add('-n', '--n_lines', type=int, default=100)
-    parser.add('-f', '--fade', action='store_true')
+    parser.add("-n", "--n_lines", type=int, default=100)
+    parser.add("-f", "--fade", action="store_true")
     args = parser.parse()
     plot(args)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
