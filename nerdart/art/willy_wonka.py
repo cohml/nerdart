@@ -37,7 +37,7 @@ def plot(args):
 
 def main():
     parser = Parser()
-    parser.add("-n", "--n_periods", type=int, default=3)
+    parser.add("-n", "--n-periods", type=int, default=3)
     parser.add("-d", "--density", type=int, default=1000)
     parser.add("-r", "--resolution", type=int, default=200)
     parser.add("-c", "--color", choices=COLORS.keys(), default="rainbow")

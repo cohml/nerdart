@@ -28,8 +28,8 @@ def plot(args):
 
 def main():
     parser = Parser()
-    parser.add("-n", "--n_lines", type=int, default=50)
-    parser.add("-m", "--max_linewidth", type=int, default=5)
+    parser.add("-n", "--n-lines", type=int, default=50)
+    parser.add("-m", "--max-linewidth", type=int, default=5)
     args = parser.parse()
     plot(args)
 

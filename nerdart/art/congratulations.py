@@ -41,7 +41,7 @@ def plot(args):
 
 def main():
     parser = Parser()
-    parser.add("-n", "--n_ribbons", type=int, default=150)
+    parser.add("-n", "--n-ribbons", type=int, default=150)
     parser.add("-s", "--sparsity", type=int, default=100)
     args = parser.parse()
     plot(args)

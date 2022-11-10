@@ -36,7 +36,7 @@ def plot(args):
 
 def main():
     parser = Parser()
-    parser.add("-n", "--num_points", type=int, default=50)
+    parser.add("-n", "--num-points", type=int, default=50)
     parser.add("-s", "--sunny", action="store_true")
     args = parser.parse()
     plot(args)

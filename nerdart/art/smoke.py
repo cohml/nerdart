@@ -23,7 +23,7 @@ def plot(args):
 
 def main():
     parser = Parser()
-    parser.add("-n", "--n_folds", type=int, default=10)
+    parser.add("-n", "--n-folds", type=int, default=10)
     args = parser.parse()
     plot(args)
 

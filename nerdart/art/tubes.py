@@ -30,7 +30,7 @@ def plot(args):
 
 def main():
     parser = Parser()
-    parser.add("-n", "--n_tubes", type=int, default=6)
+    parser.add("-n", "--n-tubes", type=int, default=6)
     parser.add("-l", "--length", type=float, default=1)
     parser.add("-d", "--density", type=int, default=2000)
     args = parser.parse()

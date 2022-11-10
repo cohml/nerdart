@@ -78,9 +78,9 @@ def alpha_(value) -> float:
 
 def main():
     parser = Parser()
-    parser.add("-c", "--n_circles", type=int, default=50)
-    parser.add("-d", "--n_dots_per_circle", type=int, default=20)
-    parser.add("-s", "--base_size", type=int, default=20)
+    parser.add("-c", "--n-circles", type=int, default=50)
+    parser.add("-d", "--n-dots-per-circle", type=int, default=20)
+    parser.add("-s", "--base-size", type=int, default=20)
     parser.add("-o", "--offset", type=float, default=np.pi)
     parser.add("-a", "--alpha", type=alpha_, default=1)
     parser.add("-p", "--spiral", action="store_true")

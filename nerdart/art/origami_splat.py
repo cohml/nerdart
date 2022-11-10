@@ -28,7 +28,7 @@ def plot(args):
 
 def main():
     parser = Parser()
-    parser.add("-n", "--n_lines", type=int, default=100)
+    parser.add("-n", "--n-lines", type=int, default=100)
     parser.add("-f", "--fade", action="store_true")
     args = parser.parse()
     plot(args)

@@ -30,7 +30,7 @@ def plot(args):
 
 def main():
     parser = Parser()
-    parser.add("-n", "--n_spikes", type=int, default=5)
+    parser.add("-n", "--n-spikes", type=int, default=5)
     parser.add("-d", "--density", type=int, default=250)
     parser.add("-s", "--seed", type=int, default=5)
     args = parser.parse()

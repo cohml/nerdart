@@ -70,8 +70,8 @@ def main():
         default="/usr/share/dict/words",
         help="must be a plaintext file with one word per line",
     )
-    parser.add("-w", "--n_words_per_line", type=int, default=50)
-    parser.add("-l", "--n_lines", type=int, default=5)
+    parser.add("-w", "--n-words-per-line", type=int, default=50)
+    parser.add("-l", "--n-lines", type=int, default=5)
     parser.add("-f", "--fontsize", type=int, default=10)
     parser.add("-r", "--rotate", action="store_true")
     parser.add("-d", "--dizziness", type=float, default=50.0, help="use with `rotate`")
@@ -80,9 +80,10 @@ def main():
         "-o",
         "--ordered",
         action="store_true",
-        help="show words in order of entry in word file; "
-        "if not passed, randomly sample words weighted "
-        "inversely by length",
+        help=(
+            "show words in order of entry in word file; if not passed, "
+            "randomly sample words weighted inversely by length"
+        ),
     )
     args = parser.parse()
     plot(args)

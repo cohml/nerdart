@@ -33,7 +33,7 @@ def plot(args):
 
 def main():
     parser = Parser()
-    parser.add("-n", "--n_floors", type=int, default=7)
+    parser.add("-n", "--n-floors", type=int, default=7)
     parser.add("-c", "--circletop", action="store_true")
     args = parser.parse()
     plot(args)

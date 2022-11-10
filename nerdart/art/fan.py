@@ -37,7 +37,7 @@ def plot(args):
 
 def main():
     parser = Parser()
-    parser.add("-n", "--n_lines", type=int, default=10)
+    parser.add("-n", "--n-lines", type=int, default=10)
     parser.add("-o", "--offset", type=int, default=0)
     parser.add("-p", "--perspective", action="store_true")
     args = parser.parse()

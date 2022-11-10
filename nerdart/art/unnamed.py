@@ -41,7 +41,7 @@ def plot(args):
 
 def main():
     parser = Parser()
-    parser.add("-n", "--n_rings", type=int, default=30)
+    parser.add("-n", "--n-rings", type=int, default=30)
     parser.add("-s", "--shakiness", type=int, default=1)
     args = parser.parse()
     plot(args)

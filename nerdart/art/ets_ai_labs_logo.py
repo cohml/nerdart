@@ -41,7 +41,7 @@ def plot(args):
 
 def main():
     parser = Parser()
-    parser.add("-n", "--n_polygons", type=int, default=8)
+    parser.add("-n", "--n-polygons", type=int, default=8)
     parser.add("-r", "--roundness", type=int, default=100)
     parser.add("-c", "--cmap", type=str, default="viridis")
     args = parser.parse()
