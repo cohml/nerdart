@@ -42,7 +42,7 @@ def plot(args):
 
 def main():
     parser = Parser()
-    parser.add("-n", "--n_star_trails", type=int, default=5000)
+    parser.add("-n", "--n-star-trails", type=int, default=5000)
     parser.add("-o", "--offset", type=float, default=0.1)
     args = parser.parse()
     plot(args)

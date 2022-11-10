@@ -110,13 +110,13 @@ def plot(args):
 
 def main():
     parser = Parser()
-    parser.add("-c", "--n_clouds", type=int, default=8)
+    parser.add("-c", "--n-clouds", type=int, default=8)
     parser.add("-s", "--squiggle", type=int, default=17)
-    parser.add("-m", "--n_mountains", type=int, default=5)
-    parser.add("-w", "--mountain_width", type=int, default=10)
-    parser.add("-i", "--mountain_height_min", type=float, default=0.2)
-    parser.add("-x", "--mountain_height_max", type=float, default=0.5)
-    parser.add("-d", "--marker_width", type=int, default=1)
+    parser.add("-m", "--n-mountains", type=int, default=5)
+    parser.add("-w", "--mountain-width", type=int, default=10)
+    parser.add("-i", "--mountain-height-min", type=float, default=0.2)
+    parser.add("-x", "--mountain-height-max", type=float, default=0.5)
+    parser.add("-d", "--marker-width", type=int, default=1)
     args = parser.parse()
     plot(args)
 

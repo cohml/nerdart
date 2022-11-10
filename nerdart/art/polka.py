@@ -37,10 +37,10 @@ def plot(args):
 
 def main():
     parser = Parser()
-    parser.add("-p", "--n_points", type=int, default=25)
-    parser.add("-w", "--n_waves", type=int, default=3)
-    parser.add("-s", "--scale_factor", type=float, default=500)
-    parser.add("-t", "--tilt_factor", type=float, default=0)
+    parser.add("-p", "--n-points", type=int, default=25)
+    parser.add("-w", "--n-waves", type=int, default=3)
+    parser.add("-s", "--scale-factor", type=float, default=500)
+    parser.add("-t", "--tilt-factor", type=float, default=0)
     args = parser.parse()
     plot(args)
 

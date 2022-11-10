@@ -36,7 +36,7 @@ def plot(args):
 
 def main():
     parser = Parser()
-    parser.add("-n", "--n_dots", type=int, default=50)
+    parser.add("-n", "--n-dots", type=int, default=50)
     parser.add(
         "-d",
         "--density",
@@ -51,7 +51,7 @@ def main():
         default=10,
         help="NB: mutually dependent with `density`",
     )
-    parser.add("-g", "--n_gons", type=int, default=4)
+    parser.add("-g", "--n-gons", type=int, default=4)
     parser.add("-l", "--linewidth", type=float, default=0.25)
     parser.add("-z", "--zoom", type=int, default=5)
     args = parser.parse()

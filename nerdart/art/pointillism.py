@@ -52,9 +52,9 @@ class InvalidAlphaError(Exception):
 
 def main():
     parser = Parser()
-    parser.add("-p", "--plots_per_row", type=int, default=4)
-    parser.add("-n", "--n_dots_per_subplots", type=int, default=20)
-    parser.add("-s", "--dot_size", type=int, default=500)
+    parser.add("-p", "--plots-per-row", type=int, default=4)
+    parser.add("-n", "--n-dots-per-subplots", type=int, default=20)
+    parser.add("-s", "--dot-size", type=int, default=500)
     parser.add("-a", "--alpha", type=alpha_, default=0.2)
     args = parser.parse()
     plot(args)

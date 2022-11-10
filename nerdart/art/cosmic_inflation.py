@@ -31,7 +31,7 @@ def plot(args):
 
 def main():
     parser = Parser()
-    parser.add("-n", "--n_lines", type=int, default=1000)
+    parser.add("-n", "--n-lines", type=int, default=1000)
     parser.add("-t", "--translate", action="store_true")
     parser.add("-s", "--striate", action="store_true")
     parser.add("-w", "--wormhole", action="store_true")

@@ -29,7 +29,7 @@ def plot(args):
 
 def main():
     parser = Parser()
-    parser.add("-n", "--n_pipes", type=int, default=25)
+    parser.add("-n", "--n-pipes", type=int, default=25)
     parser.add("-w", "--width", type=int, default=10)
     args = parser.parse()
     plot(args)

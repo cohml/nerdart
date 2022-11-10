@@ -35,8 +35,8 @@ def plot(args):
 
 def main():
     parser = Parser()
-    parser.add("-n", "--n_shapes", type=int, default=25)
-    parser.add("-a", "--n_angles", type=int, default=3)
+    parser.add("-n", "--n-shapes", type=int, default=25)
+    parser.add("-a", "--n-angles", type=int, default=3)
     parser.add("-d", "--density", type=int, default=3)
     args = parser.parse()
     plot(args)

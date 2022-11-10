@@ -30,7 +30,7 @@ def plot(args):
 
 def main():
     parser = Parser()
-    parser.add("-n", "--n_waves", type=int, default=1000)
+    parser.add("-n", "--n-waves", type=int, default=1000)
     args = parser.parse()
     plot(args)
 

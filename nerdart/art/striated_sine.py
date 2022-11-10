@@ -31,7 +31,7 @@ def plot(args):
 def main():
     parser = Parser()
     parser.add("-p", "--freqmod", type=float, default=1)
-    parser.add("-s", "--sample_rate", type=int, default=100)
+    parser.add("-s", "--sample-rate", type=int, default=100)
     parser.add("-f", "--fade", action="store_true")
     args = parser.parse()
     plot(args)

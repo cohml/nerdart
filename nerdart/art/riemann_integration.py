@@ -20,7 +20,7 @@ def plot(args):
 
 def main():
     parser = Parser()
-    parser.add("-n", "--n_rectangles", type=int, default=100)
+    parser.add("-n", "--n-rectangles", type=int, default=100)
     args = parser.parse()
     plot(args)
 

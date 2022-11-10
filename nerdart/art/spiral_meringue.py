@@ -35,11 +35,11 @@ def plot(args):
 
 def main():
     parser = Parser()
-    parser.add("-e", "--n_elbows", type=int, default=1000)
-    parser.add("-c", "--n_cycles", type=int, default=100)
+    parser.add("-e", "--n-elbows", type=int, default=1000)
+    parser.add("-c", "--n-cycles", type=int, default=100)
     parser.add("-s", "--spacing", type=int, default=5)
-    parser.add("-w", "--line_width", type=float, default=1.0)
-    parser.add("-d", "--three_d_amount", type=float, default=0)
+    parser.add("-w", "--line-width", type=float, default=1.0)
+    parser.add("-d", "--three-d-amount", type=float, default=0)
     args = parser.parse()
     plot(args)
 

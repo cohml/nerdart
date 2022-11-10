@@ -28,7 +28,7 @@ def plot(args):
 
 def main():
     parser = Parser()
-    parser.add("-n", "--n_shockwaves", type=int, default=15)
+    parser.add("-n", "--n-shockwaves", type=int, default=15)
     parser.add("-r", "--reverse", action="store_true")
     args = parser.parse()
     plot(args)

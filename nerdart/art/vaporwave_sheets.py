@@ -26,7 +26,7 @@ def main():
     parser = Parser()
     parser.add("-s", "--squishification", type=int, default=10)
     parser.add("-r", "--resolution", type=int, default=1000)
-    parser.add("-i", "--incl_dashdot", action="store_true")
+    parser.add("-i", "--include-dashdot", action="store_true")
     args = parser.parse()
     plot(args)
 

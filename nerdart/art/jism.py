@@ -59,11 +59,11 @@ def plot(args):
 
 def main():
     parser = Parser()
-    parser.add("-n", "--n_plots", type=int, default=11)
+    parser.add("-n", "--n-plots", type=int, default=11)
     parser.add("-t", "--trig", action="store_false")
     parser.add("-s", "--shift", action="store_true")
     parser.add("-d", "--dotted", action="store_true")
-    parser.add("-b", "--base_lw", type=int, default=65)
+    parser.add("-b", "--base-lw", type=int, default=65)
     args = parser.parse()
     plot(args)
 

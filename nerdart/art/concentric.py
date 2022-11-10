@@ -40,8 +40,8 @@ def main():
     parser.add("-w", "--width", type=int)
     parser.add("-c", "--color", type=str, default="black")
     parser.add("-j", "--jittery", action="store_true")
-    parser.add("-n", "--n_circles", type=int, default=1000)
-    parser.add("-r", "--rubber_band_ball", action="store_true")
+    parser.add("-n", "--n-circles", type=int, default=1000)
+    parser.add("-r", "--rubber-band-ball", action="store_true")
     args = parser.parse()
     plot(args)
 

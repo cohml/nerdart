@@ -35,10 +35,10 @@ def plot(args):
 
 def main():
     parser = Parser()
-    parser.add("-d", "--n_dims", type=int, default=20)
-    parser.add("-l", "--n_lines", type=int, default=10)
+    parser.add("-d", "--n-dims", type=int, default=20)
+    parser.add("-l", "--n-lines", type=int, default=10)
     parser.add("-w", "--linewidth", type=float, default=5)
-    parser.add("-s", "--dot_size", type=float, default=5)
+    parser.add("-s", "--dot-size", type=float, default=5)
     args = parser.parse()
     plot(args)
 

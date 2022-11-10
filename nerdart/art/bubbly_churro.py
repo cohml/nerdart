@@ -21,7 +21,7 @@ def plot(args):
 
 def main():
     parser = Parser()
-    parser.add("-n", "--n_twists", type=int, default=3)
+    parser.add("-n", "--n-twists", type=int, default=3)
     args = parser.parse()
     plot(args)
 
