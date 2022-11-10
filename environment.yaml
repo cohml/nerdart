@@ -9,4 +9,5 @@ dependencies:
   - pip
   - pip:
     - pre-commit
+  - pytest
   - scipy
