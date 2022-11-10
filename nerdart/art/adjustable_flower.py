@@ -18,19 +18,19 @@ def plot(args):
 
     ax = plt.subplot()
     ax.scatter(x * (x + coords), y * (y + coords), c=colors, alpha=0.75, s=size)
-    ax.set_aspect('equal')
-    ax.axis('off')
+    ax.set_aspect("equal")
+    ax.axis("off")
 
 
 def main():
     parser = Parser()
-    parser.add('-e', '--bleep', type=int, default=-100)
-    parser.add('-o', '--bloop', type=int, default=100)
-    parser.add('-a', '--blap', type=int, default=1000)
-    parser.add('-s', '--size', type=int, default=20)
+    parser.add("-e", "--bleep", type=int, default=-100)
+    parser.add("-o", "--bloop", type=int, default=100)
+    parser.add("-a", "--blap", type=int, default=1000)
+    parser.add("-s", "--size", type=int, default=20)
     args = parser.parse()
     plot(args)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

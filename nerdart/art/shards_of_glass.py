@@ -30,17 +30,17 @@ def plot(args):
                 ax.plot(x, y, lw=1, c=c, zorder=col)
                 ax.fill(x, y, color=c)
 
-    ax.axis('off')
+    ax.axis("off")
 
 
 def main():
     parser = Parser()
-    parser.add('-n', '--n_shapes', type=int, default=25)
-    parser.add('-a', '--n_angles', type=int, default=3)
-    parser.add('-d', '--density', type=int, default=3)
+    parser.add("-n", "--n_shapes", type=int, default=25)
+    parser.add("-a", "--n_angles", type=int, default=3)
+    parser.add("-d", "--density", type=int, default=3)
     args = parser.parse()
     plot(args)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

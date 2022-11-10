@@ -1,9 +1,7 @@
 import argparse
-
 from pathlib import Path
 
 from nerdart import DEFAULTS
-
 
 TEMPLATE = """
 
@@ -26,32 +24,29 @@ def plot(args):
 def main():
     parser = Parser()
     # insert one line per command line argument below; supply `type` and `default`
-    parser.add('-f', '--foo', type=..., default=...)
+    parser.add("-f", "--foo", type=..., default=...)
     args = parser.parse()
     plot(args)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
 
 """
 
 
 class Template:
-
     def __init__(self, name):
         self.name = name
         self.template = TEMPLATE.strip()
 
     def generate(self):
-        new_artwork_path = DEFAULTS['ART_DIR'] / f'{self.name}.py'
+        new_artwork_path = DEFAULTS["ART_DIR"] / f"{self.name}.py"
 
         if new_artwork_path.exists():
-            raise FileExistsError(
-                f'Artwork already exists: "{new_artwork_path}"'
-            )
+            raise FileExistsError(f'Artwork already exists: "{new_artwork_path}"')
 
-        with new_artwork_path.open('w') as f:
+        with new_artwork_path.open("w") as f:
             print(self.template, file=f)
 
-        print('* written:', new_artwork_path)
+        print("* written:", new_artwork_path)

@@ -16,25 +16,27 @@ def plot(args):
     x = np.linspace(-np.pi * 1.5, np.pi * 1.5, starriness) * explode
 
     for i in np.linspace(0, n):
-        ax.plot(x + i,
-                np.tan(x) * np.sin(x) + i,
-                ls=':',
-                lw=7,
-                alpha=1-i/n,
-                color=(1-i/n, 0, i/n) if color else 'k')
+        ax.plot(
+            x + i,
+            np.tan(x) * np.sin(x) + i,
+            ls=":",
+            lw=7,
+            alpha=1 - i / n,
+            color=(1 - i / n, 0, i / n) if color else "k",
+        )
 
-    ax.axis('off')
+    ax.axis("off")
 
 
 def main():
     parser = Parser()
-    parser.add('-n', type=int, default=400)
-    parser.add('-c', '--color', action='store_true')
-    parser.add('-e', '--explode', type=float, default=1)
-    parser.add('-s', '--starriness', type=int, default=10)
+    parser.add("-n", type=int, default=400)
+    parser.add("-c", "--color", action="store_true")
+    parser.add("-e", "--explode", type=float, default=1)
+    parser.add("-s", "--starriness", type=int, default=10)
     args = parser.parse()
     plot(args)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

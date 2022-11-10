@@ -13,21 +13,17 @@ def plot(args):
     cm = plt.cm.autumn(np.linspace(0, 1, n_rectangles))
     ax = plt.subplot()
 
-    ax.bar(x,
-           np.tan(x),
-           alpha=0.25,
-           color=cm,
-           edgecolor='k')
+    ax.bar(x, np.tan(x), alpha=0.25, color=cm, edgecolor="k")
 
-    ax.axis('off')
+    ax.axis("off")
 
 
 def main():
     parser = Parser()
-    parser.add('-n', '--n_rectangles', type=int, default=100)
+    parser.add("-n", "--n_rectangles", type=int, default=100)
     args = parser.parse()
     plot(args)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -31,16 +31,16 @@ def plot(args):
                 alpha = 1 - alpha if i % 2 == 0 else alpha
 
             plt.plot(arr, color=color, alpha=alpha)
-            plt.axis('off')
+            plt.axis("off")
 
 
 def main():
     parser = Parser()
-    parser.add('-n', '--num_points', type=int, default=50)
-    parser.add('-s', '--sunny', action='store_true')
+    parser.add("-n", "--num_points", type=int, default=50)
+    parser.add("-s", "--sunny", action="store_true")
     args = parser.parse()
     plot(args)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

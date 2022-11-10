@@ -1,6 +1,5 @@
 from random import shuffle
 
-
 RED = 31
 GREEN = 32
 YELLOW = 33

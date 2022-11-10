@@ -24,29 +24,39 @@ def plot(args):
 
         for i in np.linspace(1, orbitals, density):
             alpha = np.random.random()
-            ax.plot(dotx/i + jitterx,
-                    doty/i + jittery,
-                    lw=linewidth,
-                    alpha=alpha,
-                    c='k')
+            ax.plot(
+                dotx / i + jitterx, doty / i + jittery, lw=linewidth, alpha=alpha, c="k"
+            )
 
-    ax.set_aspect('equal')
-    ax.axis('off')
+    ax.set_aspect("equal")
+    ax.axis("off")
 
     plt.tight_layout()
 
 
 def main():
     parser = Parser()
-    parser.add('-n', '--n_dots', type=int, default=50)
-    parser.add('-d', '--density', type=int, default=25, help='NB: mutually dependent with `orbitals`')
-    parser.add('-o', '--orbitals', type=int, default=10, help='NB: mutually dependent with `density`')
-    parser.add('-g', '--n_gons', type=int, default=4)
-    parser.add('-l', '--linewidth', type=float, default=0.25)
-    parser.add('-z', '--zoom', type=int, default=5)
+    parser.add("-n", "--n_dots", type=int, default=50)
+    parser.add(
+        "-d",
+        "--density",
+        type=int,
+        default=25,
+        help="NB: mutually dependent with `orbitals`",
+    )
+    parser.add(
+        "-o",
+        "--orbitals",
+        type=int,
+        default=10,
+        help="NB: mutually dependent with `density`",
+    )
+    parser.add("-g", "--n_gons", type=int, default=4)
+    parser.add("-l", "--linewidth", type=float, default=0.25)
+    parser.add("-z", "--zoom", type=int, default=5)
     args = parser.parse()
     plot(args)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

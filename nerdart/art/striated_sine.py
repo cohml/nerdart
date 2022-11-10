@@ -25,17 +25,17 @@ def plot(args):
 
         plt.plot(x * ampmod + i, color=rgb, alpha=a)
 
-    plt.axis('off')
+    plt.axis("off")
 
 
 def main():
     parser = Parser()
-    parser.add('-p', '--freqmod', type=float, default=1)
-    parser.add('-s', '--sample_rate', type=int, default=100)
-    parser.add('-f', '--fade', action='store_true')
+    parser.add("-p", "--freqmod", type=float, default=1)
+    parser.add("-s", "--sample_rate", type=int, default=100)
+    parser.add("-f", "--fade", action="store_true")
     args = parser.parse()
     plot(args)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -15,7 +15,7 @@ def plot(args):
 
     # plot star trails
     lengths = np.linspace(0, 0.25, 6)
-    weights = np.linspace(1/3, 0, 6)
+    weights = np.linspace(1 / 3, 0, 6)
     for i in range(n_star_trails):
         trail_length = np.random.choice(lengths, p=weights)
         trail_coords = np.linspace(0, trail_length, 10)
@@ -23,27 +23,30 @@ def plot(args):
 
         star_x = np.sin(trail_coords + jitter * i) * jitter + offset
         star_y = np.cos(trail_coords + jitter * i) * jitter + offset
-        ax.plot(star_x, star_y,
-                c='lightgrey',
-                lw=np.random.random() ** 2,
-                alpha=np.random.random() ** 2)
+        ax.plot(
+            star_x,
+            star_y,
+            c="lightgrey",
+            lw=np.random.random() ** 2,
+            alpha=np.random.random() ** 2,
+        )
 
     # set gradient color of sky
-    ax.imshow(np.linspace(0, 1, 1000).reshape(-1, 1) ** 4,
-              extent=[-1, 1] * 2,
-              cmap='bone')
+    ax.imshow(
+        np.linspace(0, 1, 1000).reshape(-1, 1) ** 4, extent=[-1, 1] * 2, cmap="bone"
+    )
 
-    ax.set_aspect('equal')
-    ax.axis('off')
+    ax.set_aspect("equal")
+    ax.axis("off")
 
 
 def main():
     parser = Parser()
-    parser.add('-n', '--n_star_trails', type=int, default=5000)
-    parser.add('-o', '--offset', type=float, default=0.1)
+    parser.add("-n", "--n_star_trails", type=int, default=5000)
+    parser.add("-o", "--offset", type=float, default=0.1)
     args = parser.parse()
     plot(args)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

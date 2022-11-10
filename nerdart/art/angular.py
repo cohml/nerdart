@@ -18,22 +18,24 @@ def plot(args):
 
     for slope in slopes:
         x = np.ones(density) * slope
-        plt.plot((x, y),
-                 lw=0.8,
-                 color=rnd.random(3),
-                 alpha=1 if slope == 0 else abs(slope / 2) / n_spikes)
+        plt.plot(
+            (x, y),
+            lw=0.8,
+            color=rnd.random(3),
+            alpha=1 if slope == 0 else abs(slope / 2) / n_spikes,
+        )
 
-    plt.axis('off')
+    plt.axis("off")
 
 
 def main():
     parser = Parser()
-    parser.add('-n', '--n_spikes', type=int, default=5)
-    parser.add('-d', '--density', type=int, default=250)
-    parser.add('-s', '--seed', type=int, default=5)
+    parser.add("-n", "--n_spikes", type=int, default=5)
+    parser.add("-d", "--density", type=int, default=250)
+    parser.add("-s", "--seed", type=int, default=5)
     args = parser.parse()
     plot(args)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -16,20 +16,20 @@ def plot(args):
     y = np.sin(linspace) * mod
 
     ax = plt.subplot()
-    ax.axis('off')
+    ax.axis("off")
 
     for i in range(density):
         x = linspace + (0.1 * i)
         alpha = 1 - i / density
-        ax.plot(x, y, c='k', alpha=alpha, lw=lw[i])
+        ax.plot(x, y, c="k", alpha=alpha, lw=lw[i])
 
 
 def main():
     parser = Parser()
-    parser.add('-d', '--density', type=int, default=100)
+    parser.add("-d", "--density", type=int, default=100)
     args = parser.parse()
     plot(args)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

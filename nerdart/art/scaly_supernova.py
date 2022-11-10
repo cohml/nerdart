@@ -1,7 +1,7 @@
+from argparse import ArgumentTypeError
+
 import matplotlib.pyplot as plt
 import numpy as np
-
-from argparse import ArgumentTypeError
 
 from nerdart import Parser
 from nerdart.utils import save_or_show
@@ -27,11 +27,13 @@ def plot(args):
         radius_multipliers = np.linspace(0, 15, n)
         cm = plt.cm.brg(np.linspace(1, 0, n))
 
-        ax.scatter(np.sin(coords) * radius_multipliers,
-                   np.cos(coords) * radius_multipliers,
-                   s=base_size * radius_multipliers,
-                   alpha=alpha,
-                   color=cm)
+        ax.scatter(
+            np.sin(coords) * radius_multipliers,
+            np.cos(coords) * radius_multipliers,
+            s=base_size * radius_multipliers,
+            alpha=alpha,
+            color=cm,
+        )
 
     else:
 
@@ -44,16 +46,13 @@ def plot(args):
             x = np.sin(icoords) * radius_multiplier
             y = np.cos(icoords) * radius_multiplier
 
-            ax.scatter(x, y,
-                       s=base_size * radius_multiplier * i,
-                       alpha=alpha,
-                       color=c)
+            ax.scatter(x, y, s=base_size * radius_multiplier * i, alpha=alpha, color=c)
 
         ax.set_xlim(-10, 10)
         ax.set_ylim(-10, 10)
 
-    ax.set_aspect('equal')
-    ax.axis('off')
+    ax.set_aspect("equal")
+    ax.axis("off")
 
 
 def alpha_(value) -> float:
@@ -67,11 +66,11 @@ def alpha_(value) -> float:
     try:
         value = float(value)
     except ValueError:
-        err = f'The value must be a numeric value. Received {type(value)}.'
+        err = f"The value must be a numeric value. Received {type(value)}."
         raise ArgumentTypeError(err)
 
     if not (0 <= value <= 1):
-        err = f'The value must be between 0 and 1, inclusive. Received {value}.'
+        err = f"The value must be between 0 and 1, inclusive. Received {value}."
         raise ArgumentTypeError(err)
 
     return value
@@ -79,15 +78,15 @@ def alpha_(value) -> float:
 
 def main():
     parser = Parser()
-    parser.add('-c', '--n_circles', type=int, default=50)
-    parser.add('-d', '--n_dots_per_circle', type=int, default=20)
-    parser.add('-s', '--base_size', type=int, default=20)
-    parser.add('-o', '--offset', type=float, default=np.pi)
-    parser.add('-a', '--alpha', type=alpha_, default=1)
-    parser.add('-p', '--spiral', action='store_true')
+    parser.add("-c", "--n_circles", type=int, default=50)
+    parser.add("-d", "--n_dots_per_circle", type=int, default=20)
+    parser.add("-s", "--base_size", type=int, default=20)
+    parser.add("-o", "--offset", type=float, default=np.pi)
+    parser.add("-a", "--alpha", type=alpha_, default=1)
+    parser.add("-p", "--spiral", action="store_true")
     args = parser.parse()
     plot(args)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

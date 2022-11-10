@@ -10,8 +10,8 @@ def plot(args):
     n_floors = args.n_floors
     circletop = args.circletop
 
-    ax = plt.subplot(aspect='equal')
-    ax.axis('off')
+    ax = plt.subplot(aspect="equal")
+    ax.axis("off")
 
     x, y = xy(np.linspace(-np.pi, np.pi, 1000))
 
@@ -24,17 +24,20 @@ def plot(args):
     circletop = int(not circletop)
 
     for floor in range(circletop, n_floors + circletop):
-        ax.plot([yi - floor if yi > floor_y_median else yi + floor for yi in floor_y],
-                [xi + floor if xi > floor_x_median else xi - floor for xi in floor_x],
-                color='k')
+        ax.plot(
+            [yi - floor if yi > floor_y_median else yi + floor for yi in floor_y],
+            [xi + floor if xi > floor_x_median else xi - floor for xi in floor_x],
+            color="k",
+        )
+
 
 def main():
     parser = Parser()
-    parser.add('-n', '--n_floors', type=int, default=7)
-    parser.add('-c', '--circletop', action='store_true')
+    parser.add("-n", "--n_floors", type=int, default=7)
+    parser.add("-c", "--circletop", action="store_true")
     args = parser.parse()
     plot(args)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

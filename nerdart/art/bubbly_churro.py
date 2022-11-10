@@ -16,15 +16,15 @@ def plot(args):
         y = np.sin(x + i) + i
         plt.scatter(x, y, alpha=0.2, c=c)
 
-    plt.axis('off')
+    plt.axis("off")
 
 
 def main():
     parser = Parser()
-    parser.add('-n', '--n_twists', type=int, default=3)
+    parser.add("-n", "--n_twists", type=int, default=3)
     args = parser.parse()
     plot(args)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

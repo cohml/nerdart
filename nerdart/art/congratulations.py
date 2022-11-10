@@ -36,16 +36,16 @@ def plot(args):
 
     plt.xlim(0, x_maxtranslate)
     plt.ylim(0, y_maxtranslate)
-    plt.axis('off')
+    plt.axis("off")
 
 
 def main():
     parser = Parser()
-    parser.add('-n', '--n_ribbons', type=int, default=150)
-    parser.add('-s', '--sparsity', type=int, default=100)
+    parser.add("-n", "--n_ribbons", type=int, default=150)
+    parser.add("-s", "--sparsity", type=int, default=100)
     args = parser.parse()
     plot(args)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

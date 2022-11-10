@@ -18,15 +18,15 @@ def plot(args):
         y = Y * np.cos(i) * i + (2 * i)
         plt.plot(x, y, c=c, alpha=0.02)
 
-    plt.axis('off')
+    plt.axis("off")
 
 
 def main():
     parser = Parser()
-    parser.add('-n', '--n_folds', type=int, default=10)
+    parser.add("-n", "--n_folds", type=int, default=10)
     args = parser.parse()
     plot(args)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

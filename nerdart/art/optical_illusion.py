@@ -14,7 +14,7 @@ def plot(args):
     sin = np.sin(x)
 
     ax = plt.subplot()
-    ax.axis('off')
+    ax.axis("off")
 
     ax.bar(x, sin, color=plt.cm.autumn(cm_linspace), alpha=0.25)
     ax.bar(x, -sin, color=plt.cm.rainbow(cm_linspace), alpha=0.25)
@@ -22,10 +22,10 @@ def plot(args):
 
 def main():
     parser = Parser()
-    parser.add('-n', type=int, default=100)
+    parser.add("-n", type=int, default=100)
     args = parser.parse()
     plot(args)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

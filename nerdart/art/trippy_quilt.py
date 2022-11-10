@@ -20,16 +20,16 @@ def plot(args):
         a = max(np.random.random(), 0.25)
         ax.plot(x * ampmod + i, color=rgb, alpha=a)
 
-    ax.axis('off')
+    ax.axis("off")
 
 
 def main():
     parser = Parser()
-    parser.add('-f', '--freqmod', type=float, default=50.0)
-    parser.add('-d', '--density', type=int, default=500)
+    parser.add("-f", "--freqmod", type=float, default=50.0)
+    parser.add("-d", "--density", type=int, default=500)
     args = parser.parse()
     plot(args)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

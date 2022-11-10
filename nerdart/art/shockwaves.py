@@ -21,22 +21,18 @@ def plot(args):
         else:
             alpha = i / n_shockwaves
 
-        ax.plot(x + i,
-                y * i,
-                color='k',
-                alpha=alpha,
-                lw=10)
+        ax.plot(x + i, y * i, color="k", alpha=alpha, lw=10)
 
-    ax.axis('off')
+    ax.axis("off")
 
 
 def main():
     parser = Parser()
-    parser.add('-n', '--n_shockwaves', type=int, default=15)
-    parser.add('-r', '--reverse', action='store_true')
+    parser.add("-n", "--n_shockwaves", type=int, default=15)
+    parser.add("-r", "--reverse", action="store_true")
     args = parser.parse()
     plot(args)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

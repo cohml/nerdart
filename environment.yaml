@@ -6,4 +6,7 @@ dependencies:
   - ipython
   - matplotlib
   - numpy
+  - pip
+  - pip:
+    - pre-commit
   - scipy

@@ -1,7 +1,7 @@
+from argparse import ArgumentTypeError
+
 import matplotlib.pyplot as plt
 import numpy as np
-
-from argparse import ArgumentTypeError
 
 from nerdart import Parser
 from nerdart.utils import save_or_show
@@ -13,8 +13,7 @@ def plot(args):
 
     if (n_waves == 0) or (n_waves % 200 != 0):
         raise ArgumentTypeError(
-            '`n_waves` must be a positive (nonzero) multiple of 200; '
-            f'got {n_waves}'
+            "`n_waves` must be a positive (nonzero) multiple of 200; " f"got {n_waves}"
         )
 
     for j in (1, -1):
@@ -24,22 +23,17 @@ def plot(args):
                 x = np.linspace(-np.pi * 1.5, np.pi * 1.5, abs(si))
                 y = si + i + (np.sin(x) * si)
                 x *= j
-                plt.plot(x,
-                         y,
-                         lw=0.1,
-                         zorder=-i,
-                         color=color,
-                         alpha=color[0])
+                plt.plot(x, y, lw=0.1, zorder=-i, color=color, alpha=color[0])
 
-    plt.axis('off')
+    plt.axis("off")
 
 
 def main():
     parser = Parser()
-    parser.add('-n', '--n_waves', type=int, default=1000)
+    parser.add("-n", "--n_waves", type=int, default=1000)
     args = parser.parse()
     plot(args)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

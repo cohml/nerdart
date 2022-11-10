@@ -11,25 +11,22 @@ def plot(args):
     n = args.n
 
     ax = plt.subplot(polar=minimalize)
-    ax.axis('off')
+    ax.axis("off")
 
     coords = np.logspace(0, 1000, 100)
     x, y = xy(coords)
 
     for i in range(n):
-        ax.plot(y * i,
-                x * i * coords,
-                color='k',
-                alpha=i / n)
+        ax.plot(y * i, x * i * coords, color="k", alpha=i / n)
 
 
 def main():
     parser = Parser()
-    parser.add('-n', type=int, default=15)
-    parser.add('-m', '--minimalize', action='store_true')
+    parser.add("-n", type=int, default=15)
+    parser.add("-m", "--minimalize", action="store_true")
     args = parser.parse()
     plot(args)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
