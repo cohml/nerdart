@@ -1,6 +1,3 @@
-import argparse
-from pathlib import Path
-
 from nerdart import DEFAULTS
 
 TEMPLATE = """
