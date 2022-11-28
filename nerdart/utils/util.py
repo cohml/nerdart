@@ -9,10 +9,14 @@ from nerdart.utils.logo.logo import Logo
 
 
 def get_artwork_paths():
-    art_dir = Path(__file__).resolve().parent.parent / "art"
-    relative_paths = art_dir.glob("*.py")
-    absolute_paths = [rp.resolve() for rp in relative_paths if rp.name != "__init__.py"]
-    return absolute_paths
+    paths = DEFAULTS["ART_DIR"].glob("*.py")
+    return filter(is_artwork, paths)
+
+
+def is_artwork(path):
+    if path.name.startswith(("__init__", "_null-ls")):
+        return False
+    return True
 
 
 def save_or_show(file_dunder):

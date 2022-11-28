@@ -1,15 +1,36 @@
 import numpy as np
+import pytest
 
-from nerdart.utils import get_artwork_paths, xy
+from pathlib import Path
+
+from nerdart.utils import get_artwork_paths, is_artwork, xy
 
 
 def test_get_artwork_paths():
-    computed_artwork_paths = get_artwork_paths()
+    computed_artwork_paths = list(get_artwork_paths())
     error_msg = "Have you committed all new artworks?"
     assert len(computed_artwork_paths) == 45, error_msg
     error_msg += " This test relies on the alphabetical order of artwork names."
     assert computed_artwork_paths[0].stem == "unnamed", error_msg
     assert computed_artwork_paths[-1].stem == "smoke", error_msg
+
+
+@pytest.mark.parametrize(
+    "filename,expected_output",
+    [
+        ("__init__.py", False),
+        ("__init__", False),
+        ("init", True),
+        ("_null-ls_922254_foo.py", False),
+        ("_null-ls_922254_foo", False),
+        ("null-ls_922254_foo", True),
+        ("angular.py", True),
+    ],
+)
+def test_is_artwork(filename, expected_output):
+    path = Path(filename)
+    computed_output = is_artwork(path)
+    assert computed_output == expected_output
 
 
 def test_xy(array):
