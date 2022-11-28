@@ -19,9 +19,11 @@ def test_get_artwork_paths():
     "filename,expected_output",
     [
         ("__init__.py", False),
+        ("__init__", False),
+        ("init", True),
+        ("_null-ls_922254_foo.py", False),
         ("_null-ls_922254_foo", False),
-        ("init.py", True),
-        ("null.py", True),
+        ("null-ls_922254_foo", True),
         ("angular.py", True),
     ],
 )
