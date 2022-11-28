@@ -32,12 +32,9 @@ def main():
 
     elif subcommand == "template":
         if len(options) == 0:
-            raise ValueError(
-                "To initialize a new artwork from a template, supply a name as "
-                "`nerdart template <foo>`. This will create the file `foo.py`."
-            )
+            Template.throw()
         name = options[0]
-        Template(name).generate()
+        Template.generate(name)
 
     elif subcommand not in artwork_names:
         raise ValueError(f"Subcommand not recognized: {subcommand}. " + ls_msg)

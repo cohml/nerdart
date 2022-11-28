@@ -1,6 +1,7 @@
 from nerdart import DEFAULTS
 
-TEMPLATE = """
+ART_DIR = DEFAULTS["ART_DIR"]
+TEMPLATE_RAW = """
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -33,17 +34,22 @@ if __name__ == "__main__":
 
 
 class Template:
-    def __init__(self, name):
-        self.name = name
-        self.template = TEMPLATE.strip()
-
-    def generate(self):
-        new_artwork_path = DEFAULTS["ART_DIR"] / f"{self.name}.py"
+    @staticmethod
+    def generate(name):
+        new_artwork_path = ART_DIR / (name + ".py")
 
         if new_artwork_path.exists():
             raise FileExistsError(f'Artwork already exists: "{new_artwork_path}"')
 
         with new_artwork_path.open("w") as f:
-            print(self.template, file=f)
+            print(TEMPLATE_RAW.strip(), file=f)
 
         print("* written:", new_artwork_path)
+
+    @staticmethod
+    def throw():
+        raise ValueError(
+            "To initialize a new artwork `foo` using a template, supply a "
+            "name as `nerdart template foo`. This will create the file "
+            f'"{ART_DIR}/foo.py".'
+        )
