@@ -54,7 +54,7 @@ Once an artwork is selected, see which options are available for customization:
 
 To generate the selected artwork:
 
-    nerdart <artwork> [options]
+    nerdart <artwork> [OPTIONS]
 
 **Note:** All options are optional. If none are passed, the selected artwork
 will be generated with all default values.
