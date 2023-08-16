@@ -6,7 +6,7 @@ usage() {
     cat <<EOF
 Usage:
 
-    sh mkenv.sh [ARGS]
+    ./mkenv.sh [ARGS]
 
 Required arguments -- One and only one of the following:
 
