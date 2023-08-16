@@ -26,10 +26,10 @@
 
 ## Setup
 
-This project requires a conda environment. To set it up, run the following
-command from your `base` environment:
+This project requires a conda environment. Use `mkenv.sh` to set it up. See
+the help for information on how to run it:
 
-    sh mkenv.sh
+    ./mkenv.sh --help
 
 
 ## Use
@@ -54,7 +54,7 @@ Once an artwork is selected, see which options are available for customization:
 
 To generate the selected artwork:
 
-    nerdart <artwork> [options]
+    nerdart <artwork> [OPTIONS]
 
 **Note:** All options are optional. If none are passed, the selected artwork
 will be generated with all default values.
