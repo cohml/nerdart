@@ -1,4 +1,3 @@
-name: nerdart
 channels:
   - conda-forge
 dependencies:
@@ -9,5 +8,6 @@ dependencies:
   - pip
   - pip:
     - pre-commit
+    - .
   - pytest
   - scipy
