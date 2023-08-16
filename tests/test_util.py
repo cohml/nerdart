@@ -16,18 +16,18 @@ def test_get_artwork_paths():
 
 
 @pytest.mark.parametrize(
-    "filename,expected_output",
+    "expected_output,filename",
     [
-        ("__init__.py", False),
-        ("__init__", False),
-        ("init", True),
-        ("_null-ls_922254_foo.py", False),
-        ("_null-ls_922254_foo", False),
-        ("null-ls_922254_foo", True),
-        ("angular.py", True),
+        (False, "__init__.py"),
+        (False, "__init__"),
+        (True, "init"),
+        (False, "_null-ls_922254_foo.py"),
+        (False, "_null-ls_922254_foo"),
+        (True, "null-ls_922254_foo"),
+        (True, "angular.py"),
     ],
 )
-def test_is_artwork(filename, expected_output):
+def test_is_artwork(expected_output, filename):
     path = Path(filename)
     computed_output = is_artwork(path)
     assert computed_output == expected_output
