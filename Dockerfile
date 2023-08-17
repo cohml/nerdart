@@ -10,9 +10,11 @@ COPY ./nerdart/ ./
 
 WORKDIR /
 COPY ./LICENSE ./
+# copy + rename
 COPY ./entrypoint.sh.docker ./entrypoint.sh
 
 WORKDIR /home/root
+# copy + rename
 COPY ./.bashrc.docker ./.bashrc
 
 WORKDIR /opt
