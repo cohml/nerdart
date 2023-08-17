@@ -2,6 +2,7 @@ FROM continuumio/miniconda3
 
 ENV NERDART_PARENT_DIR="/opt"
 ENV NERDART_ENV_DIR="${NERDART_PARENT_DIR}/env"
+ENV INSIDE_CONTAINER=true
 
 COPY nerdart "${NERDART_PARENT_DIR}/nerdart/"
 
