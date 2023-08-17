@@ -26,19 +26,45 @@
 
 ## Setup (#setup)
 
-This project requires a conda environment. Use `mkenv.sh` to set it up. See
-the help for information on how to run it:
+The are two ways to use this project:
+
+1. locally from your primary filesystem
+
+2. inside a docker container
+
+
+### Local filesystem (#local-filesystem)
+
+First use `mkenv.sh` to create the necessary environment. See the help for
+information on how to run it:
 
     ./mkenv.sh --help
 
+After the environment has been created, activate it using `conda activate` as
+appropriate for your installation.
 
-## Use
+The package should now be ready for [use](#use).
 
-First, activate your environment:
+
+### Docker container (#docker-container)
+
+First build the docker image with the requisite conda environment installed
+inside it:
+
+    docker build . --tag nerdart
+
+After the image has been created, to use the project, run a container:
+
+    docker run --rm nerdart <subcommand>
+
+The available values for `<subcommand>` are enumerated [below](#use).
+
 
 ## Use (#use)
 
-Once activated, everything in this project is accessible via the `nerdart` command.
+Once your environment is activated or your docker image has been created, you
+can access all of this project's capabilities via the `nerdart` command. Each
+capability has a dedicated "subcommand" that follows `nerdart`.
 
 For example, to display the project's logo:
 
