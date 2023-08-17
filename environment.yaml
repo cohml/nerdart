@@ -8,6 +8,6 @@ dependencies:
   - pip
   - pip:
     - pre-commit
-    - .
+    - --editable .
   - pytest
   - scipy

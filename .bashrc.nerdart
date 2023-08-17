@@ -1,0 +1,4 @@
+set -o vi
+alias ll="ls -l"
+alias l="ll -a"
+conda activate "${NERDART_ENV_DIR}"

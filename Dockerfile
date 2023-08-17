@@ -1,29 +1,24 @@
 FROM continuumio/miniconda3
 
-ENV NERDART_ENV_DIR="/opt/env"
-ENV NERDART_PKG_DIR="/opt/nerdart"
+ENV NERDART_PARENT_DIR="/opt"
+ENV NERDART_ENV_DIR="${NERDART_PARENT_DIR}/env"
 
-RUN mkdir $NERDART_PKG_DIR
+COPY nerdart "${NERDART_PARENT_DIR}/nerdart/"
 
-WORKDIR $NERDART_PKG_DIR
-COPY ./nerdart/ ./
-
-WORKDIR /
-COPY ./LICENSE ./
-# copy + rename
-COPY ./entrypoint.sh.docker ./entrypoint.sh
-
-WORKDIR /home/root
-# copy + rename
-COPY ./.bashrc.docker ./.bashrc
-
-WORKDIR /opt
-COPY ./environment.yaml ./nerdart/ ./README.md ./setup.py ./
-
+WORKDIR $NERDART_PARENT_DIR
+COPY .bashrc.nerdart \
+     environment.yaml \
+     README.md \
+     setup.py \
+     ./
 RUN set -e \
- && conda update -n base -c defaults conda \
- && conda env create --file ./environment.yaml --prefix $NERDART_ENV_DIR \
- && echo Conda environment successfully created
+    && conda update -n base -c defaults conda \
+    && conda env create --file environment.yaml --prefix "${NERDART_ENV_DIR}" \
+    && echo Conda environment successfully created \
+    && cat .bashrc.nerdart >> $HOME/.bashrc
 
 WORKDIR /
-ENTRYPOINT ["bash", "entrypoint.sh"]
+COPY dockerd-entrypoint.sh \
+     LICENSE \
+     ./
+ENTRYPOINT ["bash", "dockerd-entrypoint.sh"]
