@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -u
+
 if [[ "$@" =~ ^bash$ ]]; then
   bash
 else
