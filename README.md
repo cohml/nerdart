@@ -1,7 +1,7 @@
-# nerdart
+# `nerdart`(#nerdart)
 
 
-## Nerdy art made with math and code.
+## Nerdy art made with math and code.(#nerdy-art-made-with-math-and-code.)
 
 ```
  _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _
@@ -24,7 +24,7 @@
 ```
 
 
-## Setup
+## Setup(#setup)
 
 This project requires a conda environment. Use `mkenv.sh` to set it up. See
 the help for information on how to run it:
@@ -36,7 +36,7 @@ the help for information on how to run it:
 
 First, activate your environment:
 
-    conda activate nerdart
+## Use(#use)
 
 Once activated, everything in this project is accessible via the `nerdart` command.
 
@@ -70,4 +70,4 @@ artwork is complete, to run it:
     nerdart foo
 
 
-# Have fun!
+# Have fun!(#have-fun!)
