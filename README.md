@@ -1,7 +1,7 @@
-# `nerdart`(#nerdart)
+# `nerdart`
 
 
-## Nerdy art made with math and code.(#nerdy-art-made-with-math-and-code.)
+## Nerdy art made with math and code.
 
 ```
  _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _
@@ -24,7 +24,7 @@
 ```
 
 
-## Setup(#setup)
+## Setup
 
 The are two ways to use this project:
 
@@ -33,7 +33,7 @@ The are two ways to use this project:
 2. inside a docker container
 
 
-### Local filesystem(#local-filesystem)
+### Local filesystem
 
 First use `mkenv.sh` to create the necessary environment. See the help for
 information on how to run it:
@@ -46,7 +46,7 @@ appropriate for your installation.
 The package should now be ready for [use](#use).
 
 
-### Docker container(#docker-container)
+### Docker container
 
 First build the docker image with the requisite conda environment installed
 inside it:
@@ -60,7 +60,7 @@ After the image has been created, to use the project, run a container:
 The available values for `<subcommand>` are enumerated [below](#use).
 
 
-## Use(#use)
+## Use
 
 Once your environment is activated or your docker image has been created, you
 can access all of this project's capabilities via the `nerdart` command. Each
@@ -96,4 +96,4 @@ artwork is complete, to run it:
     nerdart foo
 
 
-# Have fun!(#have-fun!)
+# Have fun!
