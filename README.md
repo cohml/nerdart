@@ -55,7 +55,7 @@ inside it:
 
 After the image has been created, to use the project, run a container:
 
-    docker run --rm nerdart <subcommand>
+    docker run -it --rm --publish 80:80 nerdart <subcommand>
 
 The available values for `<subcommand>` are enumerated [below](#use).
 
