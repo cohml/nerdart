@@ -4,9 +4,12 @@ ENV NERDART_PARENT_DIR="/opt"
 ENV NERDART_ENV_DIR="${NERDART_PARENT_DIR}/env"
 ENV INSIDE_CONTAINER=true
 
-COPY nerdart "${NERDART_PARENT_DIR}/nerdart/"
+RUN apt-get update
+RUN apt-get install -y uvicorn
 
 WORKDIR $NERDART_PARENT_DIR
+ADD app app
+ADD nerdart nerdart
 COPY .bashrc.nerdart \
      environment.yaml \
      README.md \
