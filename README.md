@@ -28,9 +28,9 @@
 
 The are two ways to use this project:
 
-1. locally from your primary filesystem
+1. [locally from your primary filesystem](#local-filesystem)
 
-2. inside a docker container
+2. [inside a docker container](#docker-container)
 
 
 ### Local filesystem
