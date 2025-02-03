@@ -2,6 +2,17 @@
 
 set -e
 
+if [[ $(command -v mamba) ]]; then
+  CMD=mamba
+elif [[ $(command -v conda) ]]; then
+  CMD=conda
+else
+  echo "ERROR: ``conda`` not in PATH. Cannot create environment. Aborting."
+  exit 1
+fi
+
+CONDA_ENVS_DIR="$("${CMD}" env list | grep -E "^base\s" | rev | awk '{print $1}' | rev)/envs"
+
 usage() {
     cat <<EOF
 Usage:
@@ -12,8 +23,8 @@ Required arguments -- One and only one of the following:
 
     --name | -n
       Name of the environment. Will be installed into
-      \`\`<conda_installation_dir>/envs/<name>\`\` unless
-      otherwise specified in \`\`.condarc\`\`.
+      ``${CONDA_ENVS_DIR}/<name>`` unless
+      otherwise specified in ``.condarc``.
 
     --prefix | -p
       Prefix (directory) for the environment. Will be
@@ -33,22 +44,22 @@ if [[ "$#" -eq 0 ]]; then
   exit 1
 fi
 
-while [[ "$1" != "" ]]; do
-  case "$1" in
+while [[ -n "${1}" ]]; do
+  case "${1}" in
     --help|-h)
       usage
       exit 0
       ;;
     --name|-n)
       shift
-      NAME="$1"
+      NAME="${1}"
       ;;
     --prefix|-p)
       shift
-      PREFIX="$1"
+      PREFIX="${1}"
       ;;
     *)
-      printf "ERROR: Unrecognized argument: \"${1}\". Exiting.\n\n"
+      printf "ERROR: Unrecognized argument: \"%s\". Exiting.\n\n" "${1}"
       usage
       exit 1
       ;;
@@ -62,5 +73,4 @@ else
   ARGS=( --name "${NAME}" )
 fi
 
-CMD=$(command -v mamba > /dev/null && echo mamba || echo conda)
 "${CMD}" env create --file environment.yaml "${ARGS[@]}"
