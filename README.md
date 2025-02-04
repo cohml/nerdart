@@ -1,4 +1,4 @@
-# `nerdart`
+# nerdart
 
 
 ## Nerdy art made with math and code.
@@ -26,45 +26,19 @@
 
 ## Setup
 
-The are two ways to use this project:
-
-1. [locally from your primary filesystem](#local-filesystem)
-
-2. [inside a docker container](#docker-container)
-
-
-### Local filesystem
-
-First use `mkenv.sh` to create the necessary environment. See the help for
-information on how to run it:
+This project requires a conda environment. Use `mkenv.sh` to set it up. See
+the help for information on how to run it:
 
     ./mkenv.sh --help
-
-After the environment has been created, activate it using `conda activate` as
-appropriate for your installation.
-
-The package should now be ready for [use](#use).
-
-
-### Docker container
-
-First build the docker image with the requisite conda environment installed
-inside it:
-
-    docker build . --tag nerdart
-
-After the image has been created, to use the project, run a container:
-
-    docker run -it --rm --publish 80:80 nerdart <subcommand>
-
-The available values for `<subcommand>` are enumerated [below](#use).
 
 
 ## Use
 
-Once your environment is activated or your docker image has been created, you
-can access all of this project's capabilities via the `nerdart` command. Each
-capability has a dedicated "subcommand" that follows `nerdart`.
+First, activate your environment:
+
+    conda activate nerdart
+
+Once activated, everything in this project is accessible via the `nerdart` command.
 
 For example, to display the project's logo:
 
