@@ -1,4 +1,3 @@
-import os
 from pathlib import Path
 from time import perf_counter
 
@@ -11,7 +10,7 @@ from nerdart.utils.logo.logo import Logo
 
 def get_artwork_paths():
     paths = DEFAULTS["ART_DIR"].glob("*.py")
-    return list(filter(is_artwork, paths))
+    return filter(is_artwork, paths)
 
 
 def is_artwork(path):
@@ -34,11 +33,6 @@ def save_or_show(file_dunder):
             minutes = int(np.round(duration // 60, 0))
             seconds = int(np.round(duration % 60, 0))
             print(f"* artwork generated in {minutes}m {seconds}s")
-
-            inside_container = os.environ.get('INSIDE_CONTAINER', False)
-            if inside_container:
-                cli_args.save = '' # TODO: kind of a hack; just trying to route to savefig
-                DEFAULTS["IMG_DIR"] /= 'container'
 
             # show image in popup window if `--save` not passed; don't save to file
             if cli_args.save is None:

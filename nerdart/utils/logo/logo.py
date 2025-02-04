@@ -1,4 +1,3 @@
-import os
 from shutil import get_terminal_size
 
 from nerdart.utils.defaults import DEFAULTS
@@ -49,10 +48,9 @@ class Logo:
 
     def display(self):
         terminal_width = get_terminal_size().columns
-        inside_container = os.environ.get('INSIDE_CONTAINER', False)
         displayed = False
 
-        if terminal_width >= self.max_length or inside_container:
+        if terminal_width >= self.max_length:
             displayed = True
             print(self.logo)
 

@@ -7,8 +7,7 @@ dependencies:
   - numpy
   - pip
   - pip:
-    - fastapi[all]
     - pre-commit
-    - --editable .
+    - .
   - pytest
   - scipy
