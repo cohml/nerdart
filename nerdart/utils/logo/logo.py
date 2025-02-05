@@ -1,5 +1,6 @@
 from shutil import get_terminal_size
 
+import nerdart
 from nerdart.utils.defaults import DEFAULTS
 from nerdart.utils.logo.boxes import BOXES
 from nerdart.utils.logo.letters import LETTERS
@@ -21,6 +22,11 @@ class Logo:
                 colored_letters += FORMAT.format(
                     text=letter["text"][line], color=letter["color"]
                 )
+            if line == self.n_letter_lines - 1:
+                version = "v" + nerdart.__version__
+                num_whitespace_total = 10
+                num_whitespace_left = num_whitespace_total - len(version)
+                colored_letters += (" " * num_whitespace_left) + version
             colored_letters += "\n"
         colored_letters += "\n"
 

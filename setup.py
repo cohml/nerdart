@@ -1,10 +1,11 @@
+from pathlib import Path
 from setuptools import find_packages, setup
 
-import nerdart
+__version__ = (Path(__file__) .parent / "VERSION").read_text().strip()
 
 # package metadata
 NAME = "nerdart"
-VERSION = nerdart.__version__
+VERSION = __version__
 DESCRIPTION = "Nerdy art made with math and code."
 URL = "https://github.com/cohml/nerdart"
 AUTHOR = "cohml"
