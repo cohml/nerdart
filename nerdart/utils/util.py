@@ -10,7 +10,7 @@ from nerdart.utils.logo.logo import Logo
 
 def get_artwork_paths():
     paths = DEFAULTS["ART_DIR"].glob("*.py")
-    return filter(is_artwork, paths)
+    return list(filter(is_artwork, paths))
 
 
 def is_artwork(path):
